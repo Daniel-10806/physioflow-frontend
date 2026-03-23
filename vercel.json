@@ -1,5 +1,7 @@
 {
-    "outputDirectory": "dist/physioflow-frontend/browser",
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist/physioflow-frontend",
+    "framework": null,
     "routes": [
         {
             "src": "/(.*)",
