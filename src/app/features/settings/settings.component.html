@@ -1,0 +1,382 @@
+<div class="settings-page">
+
+    <!-- TOP -->
+
+    <div class="top-bar">
+
+        <div class="title">
+            ⚙ CONFIGURACIÓN DEL SISTEMA
+            <span>PHYSIOFLOW</span>
+        </div>
+
+        <button class="home-btn" routerLink="/dashboard">
+            ← VOLVER AL INICIO
+        </button>
+
+    </div>
+
+
+    <div class="settings-container">
+
+        <div class="settings-card">
+
+
+            <!-- LOADER -->
+
+            <div class="loader" *ngIf="loading">
+                <mat-spinner diameter="40"></mat-spinner>
+            </div>
+
+
+            <!-- TABS -->
+
+            <mat-tab-group>
+
+
+                <!-- GENERAL -->
+
+                <mat-tab label="GENERAL">
+
+                    <div class="tab-content layout-2">
+
+                        <!-- LEFT -->
+
+                        <div>
+
+                            <div class="settings-form">
+
+                                <div class="field">
+                                    <label>NOMBRE CLÍNICA</label>
+                                    <input [(ngModel)]="clinicName">
+                                </div>
+
+                                <div class="field">
+                                    <label>DIRECCIÓN</label>
+                                    <input [(ngModel)]="address">
+                                </div>
+
+                                <div class="field">
+                                    <label>TELÉFONO</label>
+                                    <input [(ngModel)]="phone">
+                                </div>
+
+                            </div>
+
+                            <div class="tab-actions">
+
+                                <button class="save-btn" (click)="saveGeneral()">
+                                    GUARDAR GENERAL
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RIGHT -->
+
+                        <div class="info-panel">
+
+                            <h3>VISTA PREVIA</h3>
+
+                            <div class="preview-card">
+
+                                <div class="preview-title">
+                                    {{ clinicName || "CLÍNICA" }}
+                                </div>
+
+                                <div>{{ address }}</div>
+
+                                <div>TEL: {{ phone }}</div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </mat-tab>
+
+
+                <!-- SISTEMA -->
+
+                <mat-tab label="SISTEMA">
+
+                    <div class="tab-content layout-2">
+
+                        <div>
+
+                            <div class="settings-form">
+
+                                <div class="field locked">
+                                    <label>EMAIL SISTEMA</label>
+                                    <input [(ngModel)]="email" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>NOMBRE SISTEMA</label>
+                                    <input [(ngModel)]="systemName" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>MONEDA</label>
+                                    <input [(ngModel)]="currency" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>IMPUESTO</label>
+                                    <input [(ngModel)]="tax" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>HORA INICIO</label>
+                                    <input [(ngModel)]="startHour" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>HORA FIN</label>
+                                    <input [(ngModel)]="endHour" disabled>
+                                </div>
+
+                                <div class="field locked">
+                                    <label>DURACIÓN SESIÓN</label>
+                                    <input [(ngModel)]="sessionDuration" disabled>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-panel">
+
+                            <h3>INFORMACIÓN SISTEMA</h3>
+
+                            <div class="preview-card">
+
+                                <div><strong>VERSIÓN:</strong> 1.0</div>
+                                <div><strong>MODO:</strong> PRODUCCIÓN</div>
+                                <div><strong>BASE DE DATOS:</strong> OK</div>
+                                <div><strong>SERVIDOR:</strong> ONLINE</div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </mat-tab>
+
+
+                <!-- FACTURACION -->
+
+                <mat-tab label="FACTURACIÓN">
+
+                    <div class="tab-content billing-layout">
+
+                        <!-- LEFT -->
+
+                        <div class="billing-left">
+
+                            <div class="settings-form">
+
+                                <div class="field">
+                                    <label>SERIE COMPROBANTE</label>
+                                    <input [(ngModel)]="billingSeries">
+                                </div>
+
+                                <div class="field">
+                                    <label>IGV %</label>
+                                    <input [(ngModel)]="igv">
+                                </div>
+
+                                <div class="field">
+                                    <label>RUC</label>
+                                    <input [(ngModel)]="ruc">
+                                </div>
+
+                                <div class="field">
+                                    <label>RAZÓN SOCIAL</label>
+                                    <input [(ngModel)]="businessName">
+                                </div>
+
+                                <div class="field full">
+                                    <label>DIRECCIÓN FISCAL</label>
+                                    <input [(ngModel)]="businessAddress">
+                                </div>
+
+                                <div class="field checkbox">
+
+                                    <label>FACTURACIÓN ACTIVA</label>
+
+                                    <input type="checkbox" [(ngModel)]="billingEnabled">
+
+                                </div>
+
+                            </div>
+
+                            <div class="tab-actions">
+
+                                <button class="save-btn" (click)="saveBillingTab()">
+                                    GUARDAR FACTURACIÓN
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RIGHT PANEL -->
+
+                        <div class="billing-right">
+
+                            <div class="billing-preview">
+
+                                <h3>VISTA PREVIA COMPROBANTE</h3>
+
+                                <div class="preview-card">
+
+                                    <div class="preview-title">
+                                        {{ businessName || "CLÍNICA" }}
+                                    </div>
+
+                                    <div>
+                                        RUC: {{ ruc || "00000000000" }}
+                                    </div>
+
+                                    <div>
+                                        DIRECCIÓN: {{ businessAddress || "-" }}
+                                    </div>
+
+                                    <hr>
+
+                                    <div>
+                                        SERIE: {{ billingSeries }}
+                                    </div>
+
+                                    <div>
+                                        IGV: {{ igv }} %
+                                    </div>
+
+                                    <div>
+                                        ESTADO:
+                                        <span [class.ok]="billingEnabled" [class.off]="!billingEnabled">
+                                            {{ billingEnabled ? "Activo" : "Desactivado" }}
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </mat-tab>
+
+
+                <!-- USUARIOS -->
+
+                <mat-tab label="USUARIOS">
+
+                    <div class="tab-content layout-2">
+
+                        <div>
+
+                            <div class="user-create">
+
+                                <input placeholder="Nombre" [(ngModel)]="newUserName">
+
+                                <input placeholder="Email" [(ngModel)]="newUserEmail">
+
+                                <select [(ngModel)]="newUserRole">
+
+                                    <option>ADMIN</option>
+                                    <option>DOCTOR</option>
+                                    <option>RECEPCION</option>
+
+                                </select>
+
+                                <button class="add-user-btn" (click)="addUser()">
+                                    + AGREGAR USUARIO
+                                </button>
+
+                            </div>
+
+
+                            <table class="user-table">
+
+                                <thead>
+
+                                    <tr>
+                                        <th>NOMBRE</th>
+                                        <th>EMAIL</th>
+                                        <th>ROL</th>
+                                        <th>ACTIVO</th>
+                                        <th></th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <tr *ngFor="let u of users">
+
+                                        <td>{{u.name}}</td>
+                                        <td>{{u.email}}</td>
+
+                                        <td>
+                                            <span class="role-badge">
+                                                {{u.role}}
+                                            </span>
+                                        </td>
+
+                                        <td>
+
+                                            <input type="checkbox" [checked]="u.active" (change)="toggleUser(u)">
+
+                                        </td>
+
+                                        <td>
+
+                                            <button class="delete-btn" (click)="deleteUser(u)">
+                                                ELIMINAR
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+
+                        <div class="info-panel">
+
+                            <h3>USUARIOS</h3>
+
+                            <div class="preview-card">
+
+                                TOTAL:
+                                {{ users.length }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </mat-tab>
+
+
+            </mat-tab-group>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,107 @@
+<div class="auth-container">
+
+    <div class="background-pattern"></div>
+
+    <mat-card class="auth-card">
+
+        <div class="brand">
+            <div class="logo-circle">🩺</div>
+            <h1>PHYSIOFLOW</h1>
+            <h2>Registro Profesional</h2>
+            <p>Crear cuenta para acceso clínico autorizado</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="register()" class="auth-form grid-form">
+
+            <!-- Nombre -->
+            <mat-form-field appearance="outline" class="form-field span-2">
+                <mat-label>Nombre completo</mat-label>
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput formControlName="fullName" />
+                <mat-error *ngIf="form.get('fullName')?.hasError('required')">
+                    El nombre es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="form-field span-2">
+                <mat-label>Correo electrónico</mat-label>
+                <mat-icon matPrefix>mail</mat-icon>
+                <input matInput formControlName="email" />
+                <mat-error *ngIf="form.get('email')?.hasError('required')">
+                    El correo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('email')?.hasError('email')">
+                    Formato inválido
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Contraseña</mat-label>
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+
+                <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+                    Debe contener una mayúscula y un número
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Confirm Password -->
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Confirmar contraseña</mat-label>
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword">
+
+                <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword">
+                    <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+
+                <mat-error *ngIf="form.hasError('passwordMismatch')">
+                    Las contraseñas no coinciden
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Género -->
+            <mat-form-field appearance="outline" class="form-field span-2">
+                <mat-label>Género</mat-label>
+                <mat-icon matPrefix>wc</mat-icon>
+
+                <mat-select formControlName="gender">
+                    <mat-option value="FEMALE">Femenino</mat-option>
+                    <mat-option value="MALE">Masculino</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="form.get('gender')?.hasError('required')">
+                    El género es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- BOTÓN -->
+            <button mat-raised-button type="submit" class="primary-button register-button" [disabled]="loading">
+
+                <mat-progress-spinner *ngIf="loading" diameter="20" mode="indeterminate">
+                </mat-progress-spinner>
+
+                <span *ngIf="!loading">REGISTRARME</span>
+
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span>¿Ya tienes cuenta?</span>
+        </div>
+
+        <!-- Botón ir a Login -->
+        <button mat-stroked-button class="secondary-button" (click)="goToLogin()">
+            IR A INICIAR SESIÓN
+        </button>
+
+    </mat-card>
+</div>

@@ -1,0 +1,129 @@
+<div class="reports">
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <button class="back-btn" routerLink="/dashboard">
+
+            ← VOLVER AL INICIO
+        </button>
+
+    </div>
+
+    <!-- HEADER -->
+
+    <div class="reports-header">
+
+        <div class="header-left">
+
+            <h1>CENTRO DE REPORTES</h1>
+
+            <p>
+                CONSULTA, FILTRA Y EXPORTA INFORMACIÓN CLÍNICA
+            </p>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button class="btn pdf" (click)="exportPdf()">
+                EXPORTAR PDF
+            </button>
+
+            <button class="btn excel" (click)="exportExcel()">
+                EXPORTAR Excel
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESUMEN -->
+
+    <div class="summary">
+
+        <div class="summary-card blue">
+
+            <span>SESIONES</span>
+
+            <strong>{{ summary?.totalSessions || 0 }}</strong>
+
+        </div>
+
+
+        <div class="summary-card green">
+
+            <span>COMPLETADAS</span>
+
+            <strong>{{ summary?.completedSessions || 0 }}</strong>
+
+        </div>
+
+
+        <div class="summary-card purple">
+
+            <span>PACIENTES</span>
+
+            <strong>{{ summary?.totalPatients || 0 }}</strong>
+
+        </div>
+
+
+        <div class="summary-card orange">
+
+            <span>INGRESOS</span>
+
+            <strong>S/ {{ summary?.totalRevenue || 0 }}</strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TABLA -->
+
+    <div class="table">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>FECHA</th>
+                    <th>PACIENTE</th>
+                    <th>FISIOTERAPEUTA</th>
+                    <th>TIPO</th>
+                    <th>MONTO</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let r of rows">
+
+                    <td>{{ r.date }}</td>
+
+                    <td>{{ r.patient }}</td>
+
+                    <td>{{ r.therapist }}</td>
+
+                    <td>{{ r.type }}</td>
+
+                    <td>S/ {{ r.amount }}</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

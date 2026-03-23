@@ -1,0 +1,46 @@
+<div class="agenda-page">
+
+    <div class="agenda-header">
+
+        <div class="header-left">
+            <a class="back-btn" routerLink="/dashboard">
+                ← VOLVER AL INICIO
+            </a>
+        </div>
+
+        <div class="header-center">
+
+            <h1>AGENDA DE TERAPIAS</h1>
+            <p>GESTIÓN SEMANAL DE SESIONES FISIOTERAPÉUTICAS</p>
+
+        </div>
+
+        <div class="header-right">
+
+            <button class="new-session-btn" (click)="createNewSession()">
+                + NUEVA SESIÓN
+            </button>
+
+            <div class="week-nav">
+
+                <button (click)="previousWeek()">◀</button>
+
+                <span>{{ getWeekLabel() }}</span>
+
+                <button (click)="nextWeek()">▶</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="calendar-wrapper">
+
+        <app-weekly-calendar [sessions]="sessions" [selectedDate]="selectedDate" (sessionClick)="openDialog($event)"
+            (editSessionClick)="editSession($event)" (completeSessionClick)="completeSession($event)"
+            (paySessionClick)="pay($event)" (deleteSessionClick)="deleteSession($event)">
+        </app-weekly-calendar>
+
+    </div>
+</div>

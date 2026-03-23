@@ -1,0 +1,287 @@
+<div class="dashboard-layout" [class.sidebar-collapsed]="collapsed">
+
+    <div class="mobile-overlay" *ngIf="mobileOpen" (click)="mobileOpen = false">
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" [class.collapsed]="collapsed" [class.mobile-open]="mobileOpen">
+
+        <!-- HEADER -->
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-circle">
+                    <div class="logo-line"></div>
+                    <div class="logo-dot"></div>
+                </div>
+
+                <span class="logo-text">PHYSIOFLOW</span>
+
+            </div>
+
+            <button class="collapse-btn" (click)="toggleSidebar()">
+
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+
+            </button>
+
+        </div>
+
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <a routerLink="/dashboard" routerLinkActive="active" class="menu-item">
+                <span class="icon">📊</span>
+                <span class="menu-text">INICIO</span>
+            </a>
+
+            <a routerLink="/patients" routerLinkActive="active" class="menu-item">
+                <span class="icon">👥</span>
+                <span class="menu-text">PACIENTES</span>
+            </a>
+
+            <a routerLink="/agenda" routerLinkActive="active" class="menu-item">
+                <span class="icon">📅</span>
+                <span class="menu-text">AGENDA</span>
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <a routerLink="/billing" routerLinkActive="active" class="menu-item">
+                <span class="icon">💳</span>
+                <span class="menu-text">FACTURACIÓN</span>
+            </a>
+
+            <a routerLink="/reports" routerLinkActive="active" class="menu-item">
+                <span class="icon">📈</span>
+                <span class="menu-text">REPORTES</span>
+            </a>
+
+            <a routerLink="/settings" routerLinkActive="active" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span class="menu-text">CONFIGURACIÓN</span>
+            </a>
+
+        </nav>
+
+
+        <!-- FOOTER -->
+        <div class="sidebar-footer">
+
+            <div class="sidebar-profile">
+
+                <div class="profile-avatar">
+                    {{ userName.charAt(0) }}
+                </div>
+
+                <div class="profile-info">
+
+                    <div class="profile-name">
+                        {{ userName }}
+                    </div>
+
+                    <div class="profile-role">
+                        FISIOTERAPEUTA
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button mat-flat-button class="logout-btn" (click)="logout()">
+                CERRAR SESIÓN
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+    <main class="dashboard">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div class="header-text">
+                <h1>PHYSIOFLOW</h1>
+                <p>SISTEMA CLÍNICO DE FISIOTERAPIA</p>
+
+                <div class="welcome-message">
+                    {{ greeting }}, <strong>{{ userName }}</strong>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" (click)="toggleSidebar()">☰</button>
+
+        </header>
+
+        <!-- KPIs -->
+        <div class="stats-grid">
+
+            <mat-card class="stat-card">
+                <div class="stat-accent green"></div>
+                <div class="stat-content">
+                    <div class="stat-title">SESIONES HOY</div>
+                    <div class="stat-number">{{ animatedSessions }}</div>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <div class="stat-accent blue"></div>
+                <div class="stat-content">
+                    <div class="stat-title">SESIONES PENDIENTES</div>
+                    <div class="stat-number">{{ animatedPending }}</div>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <div class="stat-accent orange"></div>
+                <div class="stat-content">
+                    <div class="stat-title">PACIENTES NUEVOS (SEMANA)</div>
+                    <div class="stat-number">{{ animatedNewPatients }}</div>
+                </div>
+            </mat-card>
+
+        </div>
+
+
+        <!-- GRID PRINCIPAL -->
+        <div class="main-grid">
+
+            <!-- AGENDA -->
+            <div class="agenda-section">
+                <h2>AGENDA DE HOY ({{ sessions.length }})</h2>
+
+                <div class="timeline">
+
+                    <div class="empty-state" *ngIf="!loadingSessions && sessions.length === 0">
+                        <div class="empty-icon">📅</div>
+                        <p>No hay sesiones programadas para hoy</p>
+                    </div>
+
+                    <div class="timeline-item" *ngFor="let session of sessions; trackBy: trackSession"
+                        [ngClass]="session.status?.toLowerCase()">
+
+                        <div class="timeline-time">
+                            {{ session.time | slice:0:5 }}
+                        </div>
+
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-card">
+
+                            <div class="session-header">
+
+                                <div class="patient">
+                                    🧑‍⚕️ {{ session.patientName }}
+                                </div>
+
+                                <div class="status-badge" [ngClass]="session.status?.toLowerCase()">
+                                    {{ session.status || 'PROGRAMADO' }}
+                                </div>
+
+                            </div>
+
+                            <div class="session-type">
+                                {{ session.type }}
+                            </div>
+
+                            <div class="session-actions">
+
+                                <button mat-stroked-button color="primary" routerLink="/patients">
+                                    VER PACIENTE
+                                </button>
+
+                                <button mat-flat-button color="primary" routerLink="/agenda">
+                                    ABRIR SESIÓN
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INDICADORES CLÍNICOS -->
+            <div class="modules-section">
+
+                <h2>INDICADORES DEL DÍA</h2>
+
+                <div class="modules-grid">
+
+                    <!-- Pacientes activos -->
+                    <mat-card class="module-card">
+                        <div class="module-icon">🧑‍⚕️</div>
+
+                        <div class="module-content">
+                            <h3>PACIENTES ACTIVOS</h3>
+                            <p>Total de pacientes en seguimiento</p>
+                            <div class="indicator-value">
+                                {{ totalPatients }}
+                            </div>
+                        </div>
+                    </mat-card>
+
+                    <!-- Sesiones completadas hoy -->
+                    <mat-card class="module-card">
+                        <div class="module-icon">✔️</div>
+
+                        <div class="module-content">
+                            <h3>SESIONES COMPLETADAS</h3>
+                            <p>Sesiones realizadas hoy</p>
+                            <div class="indicator-value">
+                                {{ completedToday }}
+                            </div>
+                        </div>
+                    </mat-card>
+
+                    <!-- Capacidad de agenda -->
+                    <mat-card class="module-card">
+                        <div class="module-icon">📊</div>
+
+                        <div class="module-content">
+                            <h3>CAPACIDAD DE AGENDA</h3>
+                            <p>Ocupación del día</p>
+                            <div class="indicator-value">
+                                {{ occupancyPercentage | number:'1.0-0' }}%
+                            </div>
+                        </div>
+                    </mat-card>
+
+                    <!-- Próxima sesión -->
+                    <mat-card class="module-card">
+                        <div class="module-icon">⏱️</div>
+
+                        <div class="module-content">
+                            <h3>PRÓXIMA SESIÓN</h3>
+                            <p>Paciente más cercano en agenda</p>
+
+                            <div class="indicator-value small" *ngIf="nextSession">
+                                {{ nextSession.patientName }}
+                            </div>
+
+                            <div class="indicator-value small" *ngIf="!nextSession">
+                                Sin sesiones próximas
+                            </div>
+                        </div>
+                    </mat-card>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>

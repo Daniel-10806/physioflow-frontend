@@ -1,1 +1,255 @@
-/* You can add global styles to this file, and also import other style files */
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme((color: (primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+
+/* =====================================
+   INPUT CLÍNICO LIMPIO – MATERIAL 3 FIX
+===================================== */
+
+/* Contenedor */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #dce3ea !important;
+}
+
+/* Hover */
+.mat-mdc-form-field:hover .mdc-notched-outline__leading,
+.mat-mdc-form-field:hover .mdc-notched-outline__notch,
+.mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: #b0c4d6 !important;
+}
+
+/* Glow azul médico */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #1565C0 !important;
+  border-width: 2px !important;
+}
+
+.mat-mdc-form-field.mat-focused {
+  transform: translateY(-2px);
+}
+
+/* Glow externo elegante */
+.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.12);
+}
+
+/* Label elegante */
+.mat-mdc-form-field .mdc-floating-label {
+  color: #5f6b7a !important;
+  font-weight: 500;
+}
+
+/* Error profesional */
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__trailing {
+  border-color: #d32f2f !important;
+}
+
+/* =====================================
+   MATERIAL 3 INPUT CLEAN OVERRIDE
+===================================== */
+
+:root {
+
+  /* Fondo del input */
+  --mdc-outlined-text-field-container-color: #ffffff;
+
+  /* Borde normal */
+  --mdc-outlined-text-field-outline-color: #d6dde5;
+
+  /* Hover */
+  --mdc-outlined-text-field-hover-outline-color: #b5c7d8;
+
+  /* Focus */
+  --mdc-outlined-text-field-focus-outline-color: #1565C0;
+
+  /* Error */
+  --mdc-outlined-text-field-error-outline-color: #d32f2f;
+
+  /* Label */
+  --mdc-outlined-text-field-label-text-color: #5f6b7a;
+  --mdc-outlined-text-field-focus-label-text-color: #1565C0;
+
+}
+
+.mat-mdc-form-field {
+  margin-bottom: 18px;
+  transition: transform 0.2s ease;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 18px !important;
+}
+
+.mat-mdc-form-field.mat-focused {
+  transform: translateY(-1px);
+  transition: 0.2s ease;
+}
+
+/* ===== FIX ICON SPACING MATERIAL 3 ===== */
+
+/* Espaciado correcto del icono prefix */
+.mat-mdc-form-field .mat-mdc-form-field-icon-prefix {
+  margin-right: 12px !important;
+  margin-left: 6px !important;
+  color: #5f6b7a;
+}
+
+/* Ajuste del input cuando hay prefix */
+.mat-mdc-form-field .mdc-text-field__input {
+  padding-left: 8px !important;
+}
+
+/* Asegurar que el contenedor interno no se comprima */
+.mat-mdc-form-field .mdc-text-field {
+  align-items: center;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-prefix {
+  color: #1565C0;
+}
+
+/* Animación del icono */
+.mat-mdc-form-field .mat-mdc-form-field-icon-prefix {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-prefix {
+  color: #1565C0;
+  transform: scale(1.1);
+}
+
+/* ===== FIX DEFINITIVO BOTÓN LOGIN ===== */
+
+.login-button,
+.login-button .mdc-button__label {
+  color: white !important;
+}
+
+.login-button {
+  --mdc-filled-button-label-text-color: white !important;
+  --mdc-filled-button-hover-label-text-color: white !important;
+  --mdc-filled-button-focus-label-text-color: white !important;
+  --mdc-filled-button-pressed-label-text-color: white !important;
+}
+
+/* ===============================
+   HOSPITAL DARK MODE
+================================ */
+
+.dark-mode {
+  background: linear-gradient(135deg, #0F172A, #0B3C5D) !important;
+}
+
+.dark-mode .login-card {
+  background: #1E293B !important;
+  color: #E2E8F0;
+}
+
+.dark-mode .brand h1 {
+  color: #38BDF8;
+}
+
+.dark-mode .brand p {
+  color: #94A3B8;
+}
+
+.dark-mode .mat-mdc-form-field .mdc-notched-outline__leading,
+.dark-mode .mat-mdc-form-field .mdc-notched-outline__notch,
+.dark-mode .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #334155 !important;
+}
+
+.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.dark-mode .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #38BDF8 !important;
+}
+
+.dark-mode .login-button {
+  background: linear-gradient(135deg, #0284C7, #06B6D4);
+}
+
+.error-snackbar {
+  background: #d32f2f !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.warning-snackbar {
+
+  background: #FFF4E5;
+  color: #B45309;
+  font-weight: 600;
+  border-left: 6px solid #F59E0B;
+
+}
+
+.payment-dialog-panel .mat-mdc-dialog-container {
+
+  padding: 0 !important;
+
+  border-radius: 24px !important;
+
+  overflow: hidden !important;
+
+}
+
+.payment-dialog-panel .mdc-dialog__surface {
+
+  border-radius: 24px !important;
+
+  overflow: hidden !important;
+
+}
+
+.payment-dialog-panel {
+
+  max-width: 600px !important;
+  width: 600px !important;
+
+}
+
+::ng-deep .cdk-overlay-backdrop {
+  backdrop-filter: blur(3px);
+}

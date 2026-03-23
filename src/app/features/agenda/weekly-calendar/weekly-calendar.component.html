@@ -1,0 +1,137 @@
+<div class="calendar">
+
+    <!-- HEADER -->
+    <div class="calendar-header">
+
+        <div class="hour-col"></div>
+
+        <div class="day-col" *ngFor="let day of days">
+            <div class="day-name">
+                {{ day | date:'EEE':'':'es' }}
+            </div>
+
+            <div class="day-number">
+                {{ day | date:'dd' }}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BODY -->
+
+    <div class="calendar-body">
+
+        <div class="calendar-row" *ngFor="let hour of hours">
+
+            <!-- HOUR -->
+            <div class="hour-label">
+                {{ hour }}
+            </div>
+
+            <!-- DAYS -->
+
+            <div class="calendar-cell" *ngFor="let day of days" (click)="!isPastHour(day, hour) && createSession(hour)">
+
+                <ng-container *ngFor="let session of getSessionsForCell(day, hour)">
+
+                    <div class="session-card" [ngClass]="[
+        session.type?.toLowerCase(),
+        session.isPaid ? 'paid' : '',
+        session.status?.toLowerCase()
+     ]" (click)="$event.stopPropagation()">
+
+                        <div class="session-grid">
+
+                            <!-- avatar -->
+                            <div class="avatar">
+                                {{ session.patientName?.charAt(0) }}
+                            </div>
+
+                            <!-- info -->
+                            <div class="session-info">
+
+                                <div class="patient-name">
+                                    {{ session.patientName }}
+                                </div>
+
+                                <div class="session-time">
+
+                                    {{ session.type }}
+                                    · {{ (session.time || session.sessionTime) | slice:0:5 }}
+                                    · {{ session.duration || session.durationMinutes }} min
+
+                                </div>
+
+                                <div class="badges">
+
+                                    <span *ngIf="session.isPaid" class="paid-badge">
+                                        ✔ PAGADO
+                                    </span>
+
+                                    <span *ngIf="session.status === 'COMPLETED'" class="completed-badge">
+                                        ✔ COMPLETADA
+                                    </span>
+
+                                    <span *ngIf="!session.isPaid && session.status !== 'COMPLETED'"
+                                        class="scheduled-badge">
+                                        ● PROGRAMADA
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- menu -->
+                            <div class="session-menu" *ngIf="session.status !== 'COMPLETED'">
+
+                                <button class="menu-btn" (click)="toggleMenu(session,$event)">
+                                    ⋮
+                                </button>
+
+                                <div class="menu-dropdown" [ngClass]="session.menuDirection" *ngIf="session.showMenu">
+
+                                    <div class="menu-item" *ngIf="!session.isPaid && session.status !== 'COMPLETED'"
+                                        (click)="editSession(session);$event.stopPropagation()">
+
+                                        ✏ EDITAR
+
+                                    </div>
+
+                                    <div class="menu-item" *ngIf="!session.isPaid"
+                                        (click)="paySession(session);$event.stopPropagation()">
+
+                                        💳 PAGAR
+
+                                    </div>
+
+                                    <div class="menu-item" *ngIf="session.isPaid && session.status !== 'COMPLETED'"
+                                        (click)="completeSession(session);$event.stopPropagation()">
+
+                                        🩺 REGISTRAR
+
+                                    </div>
+
+                                    <div class="menu-item delete" *ngIf="!session.isPaid"
+                                        (click)="deleteSession(session);$event.stopPropagation()">
+
+                                        🗑 ELIMINAR
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

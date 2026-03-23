@@ -1,0 +1,125 @@
+<div class="billing-container">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+
+        <button mat-stroked-button routerLink="/dashboard" class="back-btn">
+            ← REGRESAR AL INICIO
+        </button>
+
+        <div class="top-title">
+
+            <h1>FACTURACIÓN</h1>
+            <p>GESTIÓN DE PAGOS CLÍNICOS</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="billing-stats">
+
+        <div class="stat-card">
+            <div class="stat-title">PAGOS</div>
+            <div class="stat-value">{{ payments.length }}</div>
+        </div>
+
+        <div class="stat-card green">
+            <div class="stat-title">PAGADOS</div>
+            <div class="stat-value">
+                {{ payments.filter(p => p.status === 'PAID').length }}
+            </div>
+        </div>
+
+        <div class="stat-card orange">
+            <div class="stat-title">PENDIENTES</div>
+            <div class="stat-value">
+                {{ payments.filter(p => p.status !== 'PAID').length }}
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+    <mat-card class="table-card">
+
+        <div *ngIf="loading" class="loader">
+
+            <div class="spinner"></div>
+            <p>CARGANDO PAGOS...</p>
+
+        </div>
+
+
+        <table *ngIf="!loading">
+
+            <thead>
+                <tr>
+                    <th>PACIENTE</th>
+                    <th>FECHA</th>
+                    <th>MONTO</th>
+                    <th>ESTADO</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let p of payments" class="row">
+
+                    <td>
+
+                        <div class="patient-cell">
+
+                            <div class="avatar">
+                                {{ p.patientName?.charAt(0) }}
+                            </div>
+
+                            <div class="patient-name">
+                                {{ p.patientName }}
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        {{ p.createdAt | date:'yyyy-MM-dd' }}
+                    </td>
+
+                    <td class="amount">
+                        S/ {{ p.amount }}
+                    </td>
+
+                    <td>
+
+                        <span class="status-badge" [class.paid]="p.status === 'PAID'"
+                            [class.pending]="p.status !== 'PAID'">
+
+                            {{ p.status === 'PAID' ? 'PAGADO' : 'PENDIENTE' }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="pdf-btn" (click)="downloadPdf(p.id)">
+
+                            📄 PDF
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </mat-card>
+
+</div>

@@ -1,0 +1,90 @@
+<div class="login-container">
+
+    <div class="overlay"></div>
+
+    <mat-card class="login-card" @fadeIn>
+
+        <div class="brand">
+            <div class="logo-circle">
+                🩺
+            </div>
+            <div class="brand-divider"></div>
+            <h1>PHYSIOFLOW</h1>
+            <p class="brand-subtitle">
+                SISTEMA DE GESTIÓN CLÍNICA
+            </p>
+
+            <p class="security-note">
+                Acceso exclusivo para profesionales autorizados.
+                La información clínica está protegida y cifrada
+            </p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="login()">
+
+            <!-- EMAIL -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>CORREO ELECTRÓNICO</mat-label>
+                <mat-icon matPrefix>mail</mat-icon>
+                <input matInput formControlName="email" />
+                <mat-error *ngIf="form.get('email')?.hasError('required')">
+                    El correo electrónico es obligatorio
+                </mat-error>
+                <mat-error *ngIf="!isBlocked && form.get('email')?.hasError('required')">
+                    Formato de email inválido
+                </mat-error>
+            </mat-form-field>
+
+            <!-- PASSWORD -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>CONTRASEÑA</mat-label>
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                    <mat-icon>
+                        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </button>
+
+                <mat-error *ngIf="!isBlocked && form.get('password')?.hasError('required')">
+                    Debe ingresar su contraseña
+                </mat-error>
+            </mat-form-field>
+
+            <!-- BUTTON -->
+            <button mat-raised-button type="submit" class="login-button" [disabled]="loading || isBlocked">
+
+                <mat-progress-spinner *ngIf="loading" diameter="22" mode="indeterminate">
+                </mat-progress-spinner>
+
+                <span *ngIf="!loading && !isBlocked">
+                    ACCEDER AL SISTEMA CLÍNICO
+                </span>
+
+                <span *ngIf="isBlocked">
+                    BLOQUEADO ({{ blockTimeRemaining }}s)
+                </span>
+
+            </button>
+
+            <div *ngIf="isBlocked" class="block-warning">
+                Demasiados intentos fallidos.
+                Espere {{ blockTimeRemaining }} segundos antes de intentar nuevamente.
+            </div>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span>¿No tienes cuenta?</span>
+        </div>
+
+        <!-- Botón ir a Register -->
+        <button mat-stroked-button class="secondary-button" (click)="goToRegister()">
+            CREAR CUENTA PROFESIONAL
+        </button>
+
+    </mat-card>
+
+</div>

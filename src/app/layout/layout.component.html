@@ -1,0 +1,38 @@
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            🩺 PhysioFlow
+        </div>
+
+        <nav>
+            <a routerLink="/dashboard" routerLinkActive="active">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+            </a>
+
+            <a routerLink="/patients" routerLinkActive="active">
+                <mat-icon>groups</mat-icon>
+                Pacientes
+            </a>
+
+            <a>
+                <mat-icon>analytics</mat-icon>
+                Estadísticas
+            </a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="topbar">
+            <div class="user">
+                👨‍⚕️ Terapeuta
+            </div>
+        </header>
+
+        <div class="page">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+
+</div>

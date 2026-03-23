@@ -1,0 +1,70 @@
+<div class="soap-page">
+
+    <div class="soap-card">
+
+        <div class="header">
+
+            <div class="icon">
+                🩺
+            </div>
+
+            <div>
+                <h1>Registro Clínico</h1>
+                <p>Método SOAP · Evaluación de sesión terapéutica</p>
+            </div>
+
+        </div>
+
+        <div class="soap-grid">
+
+            <div class="field">
+                <label>Subjetivo</label>
+                <textarea [(ngModel)]="form.subjective"
+                    placeholder="Lo que el paciente refiere (dolor, síntomas, molestias...)">
+                </textarea>
+            </div>
+
+            <div class="field">
+                <label>Objetivo</label>
+                <textarea [(ngModel)]="form.objective"
+                    placeholder="Hallazgos observables (movilidad, inflamación, postura...)">
+                </textarea>
+            </div>
+
+            <div class="field">
+                <label>Evaluación</label>
+                <textarea [(ngModel)]="form.assessment" placeholder="Análisis clínico del fisioterapeuta">
+                </textarea>
+            </div>
+
+            <div class="field">
+                <label>Tratamiento</label>
+                <textarea [(ngModel)]="form.treatment"
+                    placeholder="Terapias aplicadas (ejercicios, masoterapia, electroterapia...)">
+                </textarea>
+            </div>
+
+            <div class="field full">
+                <label>Notas clínicas</label>
+                <textarea [(ngModel)]="form.progressNotes"
+                    placeholder="Evolución del paciente, observaciones adicionales...">
+                </textarea>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="cancel-btn" (click)="cancel()">
+                ← Volver al calendario
+            </button>
+
+            <button class="save-btn" (click)="save()">
+                💾 Guardar registro clínico
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

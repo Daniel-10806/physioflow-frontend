@@ -1,0 +1,231 @@
+<div class="patients-wrapper">
+
+    <div class="back-wrapper">
+        <button mat-button color="primary" (click)="goToDashboard()">
+            ← VOLVER AL INICIO
+        </button>
+    </div>
+
+    <div class="patients-header">
+
+        <div class="header-left">
+
+            <div class="header-title">
+                <mat-icon>groups</mat-icon>
+
+                <div>
+                    <h1>PACIENTES</h1>
+                    <p>GESTIÓN Y SEGUIMIENTO CLÍNICO</p>
+                </div>
+
+            </div>
+
+            <div class="patients-count">
+                {{ dataSource.data.length }}
+                {{ dataSource.data.length === 1 ? 'PACIENTE REGISTRADO' : 'PACIENTES REGISTRADOS' }}
+            </div>
+
+        </div>
+
+        <div class="header-right">
+
+            <div class="search-wrapper">
+
+                <div class="search-box">
+
+                    <mat-icon>search</mat-icon>
+
+                    <input type="text" placeholder="Buscar paciente por nombre o email" (input)="filter($event)" />
+
+                </div>
+
+                <button mat-raised-button class="btn-new" (click)="goToNewPatient()">
+                    <mat-icon>person_add</mat-icon>
+                    NUEVO PACIENTE
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="patients-stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                <mat-icon>groups</mat-icon>
+            </div>
+
+            <div>
+                <div class="stat-value">
+                    {{ dataSource.data.length }}
+                </div>
+
+                <div class="stat-label">
+                    {{ dataSource.data.length === 1 ? 'PACIENTE REGISTRADO' : 'PACIENTES REGISTRADOS' }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                <mat-icon>event</mat-icon>
+            </div>
+
+            <div>
+                <div class="stat-value">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    {{ dataSource.data.length === 1 ? 'SESIÓN HOY' : 'SESIONES HOY' }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                <mat-icon>monitor_heart</mat-icon>
+            </div>
+
+            <div>
+                <div class="stat-value">
+                    {{ dataSource.data.length }}
+                </div>
+
+                <div class="stat-label">
+                    {{ dataSource.data.length === 1 ? 'PACIENTE ACTIVO' : 'PACIENTES ACTIVOS' }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <mat-card class="table-card mat-elevation-z3">
+
+        <div class="table-container">
+
+            <!-- LOADING -->
+            <div *ngIf="isLoading" class="skeleton-table">
+
+                <div class="skeleton-row" *ngFor="let i of [1,2,3,4]">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                </div>
+
+            </div>
+
+
+            <div *ngIf="!isLoading && dataSource.data.length === 0" class="empty-state">
+                🔎 NO SE ENCONTRARON PACIENTES
+            </div>
+
+            <table *ngIf="!isLoading && dataSource.data.length > 0" mat-table [dataSource]="dataSource"
+                class="modern-table">
+                <!-- SELECT -->
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let p">
+                        <mat-checkbox (click)="$event.stopPropagation()" (change)="toggleSelection(p.id)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <!-- NAME -->
+                <ng-container matColumnDef="fullName">
+                    <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+                    <td mat-cell *matCellDef="let p">
+                        <div class="patient-info">
+
+                            <div class="avatar" [style.background]="getAvatarColor(p.fullName)">
+                                {{ p.fullName?.charAt(0) || '?' }}
+                            </div>
+
+                            <div class="patient-details">
+
+                                <div class="patient-name">
+                                    {{ p.fullName }}
+                                </div>
+
+                                <div class="patient-meta">
+
+                                    <span class="status-badge active">
+                                        ACTIVO
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- EMAIL -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> EMAIL </th>
+                    <td mat-cell *matCellDef="let p">
+                        {{ p.email }}
+                    </td>
+                </ng-container>
+
+                <!-- ACTIONS -->
+                <ng-container matColumnDef="actions">
+
+                    <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+
+                    <td mat-cell *matCellDef="let p">
+
+                        <button mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+
+                            <mat-icon>more_vert</mat-icon>
+
+                        </button>
+
+                        <mat-menu #actionsMenu="matMenu">
+
+                            <button mat-menu-item (click)="viewHistory(p)">
+                                <mat-icon>history</mat-icon>
+                                <span>HISTORIAL</span>
+                            </button>
+
+                            <button mat-menu-item (click)="viewEvolution(p)">
+                                <mat-icon>trending_up</mat-icon>
+                                <span>EVOLUCIÓN</span>
+                            </button>
+
+                            <button mat-menu-item (click)="schedulePatient(p)">
+                                <mat-icon>event</mat-icon>
+                                <span>AGENDAR</span>
+                            </button>
+
+                            <button mat-menu-item (click)="deletePatient(p)">
+                                <mat-icon color="warn">delete</mat-icon>
+                                <span>ELIMINAR</span>
+                            </button>
+
+                        </mat-menu>
+
+                    </td>
+
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns" class="row-hover" @rowAnimation
+                    (click)="goToDetail(row)">
+                </tr>
+
+            </table>
+        </div>
+    </mat-card>
+
+</div>

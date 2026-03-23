@@ -1,0 +1,126 @@
+<div class="evolution-wrapper">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <button class="back-btn" (click)="goBack()">
+            ← VOLVER A PACIENTES
+        </button>
+
+        <div class="title">
+            <h1>📈 EVOLUCIÓN DEL PACIENTE</h1>
+            <p>SEGUIMIENTO FISIOTERAPÉUTICO Y PROGRESO CLÍNICO</p>
+        </div>
+
+    </div>
+
+    <!-- MÉTRICAS -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card pain">
+
+            <div class="metric-header">
+                DOLOR PROMEDIO
+            </div>
+
+            <div class="metric-value">
+                {{avgPain ?? '-'}}
+            </div>
+
+        </div>
+
+        <div class="summary-card mobility">
+
+            <div class="metric-header">
+                MOVILIDAD PROMEDIO
+            </div>
+
+            <div class="metric-value">
+                {{avgMobility ?? '-'}}
+            </div>
+
+        </div>
+
+        <div class="summary-card strength">
+
+            <div class="metric-header">
+                FUERZA PROMEDIO
+            </div>
+
+            <div class="metric-value">
+                {{avgStrength ?? '-'}}
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- INDICADORES CLÍNICOS -->
+
+    <div class="clinical-insights" *ngIf="sessionsCount > 1">
+
+        <div class="insight-card progress">
+
+            <div class="insight-title">
+                PROGRESO FISIOTERAPÉUTICO
+            </div>
+
+            <div class="insight-value">
+                {{progressPercentage}}%
+            </div>
+
+            <div class="insight-label">
+                MEJORA RESPECTO A LA PRIMERA SESIÓN
+            </div>
+
+        </div>
+
+        <div class="insight-card status">
+
+            <div class="insight-title">
+                ESTADO DEL PACIENTE
+            </div>
+
+            <div class="status-badge" [ngClass]="statusClass">
+                {{patientStatus}}
+            </div>
+
+        </div>
+
+        <div class="insight-card trend">
+
+            <div class="insight-title">
+                TENDENCIA FISIOTERAPÉUTICA
+            </div>
+
+            <div class="trend-text">
+                {{trendText}}
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- GRÁFICO -->
+
+    <mat-card class="evolution-card">
+
+        <div class="chart-header">
+
+            <div class="chart-title">
+                EVOLUCIÓN CLÍNICA
+            </div>
+
+            <div class="chart-subtitle">
+                PROGRESO FISIOTERAPÉUTICO A LO LARGO DE LAS SESIONES
+            </div>
+
+        </div>
+
+        <div class="chart-container">
+            <canvas #chartCanvas></canvas>
+        </div>
+    </mat-card>
+</div>

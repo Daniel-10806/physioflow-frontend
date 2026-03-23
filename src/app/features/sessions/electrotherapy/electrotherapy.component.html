@@ -1,0 +1,50 @@
+<div class="electro-page">
+
+    <mat-card class="electro-card">
+
+        <h2>Registro de electroterapia</h2>
+
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de corriente</mat-label>
+                <input matInput formControlName="currentType">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Intensidad</mat-label>
+                <input matInput formControlName="intensity">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Frecuencia</mat-label>
+                <input matInput formControlName="frequency">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Duración (min)</mat-label>
+                <input matInput formControlName="duration">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Notas</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+
+            <div class="actions">
+
+                <button mat-stroked-button routerLink="/agenda">
+                    Cancelar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

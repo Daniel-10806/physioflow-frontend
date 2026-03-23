@@ -1,0 +1,50 @@
+<div class="maso-page">
+
+    <mat-card class="maso-card">
+
+        <h2>Registro de masoterapia</h2>
+
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Zona tratada</mat-label>
+                <input matInput formControlName="zone">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de masaje</mat-label>
+                <input matInput formControlName="massageType">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Presión aplicada</mat-label>
+                <input matInput formControlName="pressure">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Duración (min)</mat-label>
+                <input matInput formControlName="duration">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+
+            <div class="actions">
+
+                <button mat-stroked-button routerLink="/agenda">
+                    Cancelar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

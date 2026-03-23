@@ -1,0 +1,562 @@
+.dialog-container {
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(180deg, #ffffff, #f4f9ff);
+
+    animation: dialogIn .25s ease;
+
+
+    min-width: 520px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .15),
+        0 10px 30px rgba(21, 101, 192, .15);
+
+}
+
+
+/* ---------- ANIMATION ---------- */
+
+@keyframes dialogIn {
+
+    from {
+
+        opacity: 0;
+        transform: scale(.9) translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: scale(1) translateY(0);
+
+    }
+
+}
+
+
+/* ---------- HEADER ---------- */
+
+.dialog-header {
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+.icon {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    background: linear-gradient(135deg, #1565C0, #00A896);
+
+    color: white;
+
+    box-shadow: 0 6px 18px rgba(21, 101, 192, .25);
+
+}
+
+.title h2 {
+
+    margin: 0;
+    font-size: 22px;
+
+    color: #1565C0;
+    font-weight: 700;
+
+}
+
+.title p {
+
+    margin: 2px 0 0;
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+.session-card-info {
+
+    border-radius: 14px;
+
+    padding: 14px;
+
+    margin-bottom: 15px;
+
+    background: linear-gradient(135deg,
+            #e3f2fd,
+            #f1f8ff);
+
+    border: 1px solid #dbeafe;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+}
+
+.session-card-info .row {
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 13px;
+
+}
+
+.session-card-info span {
+
+    color: #64748b;
+
+}
+
+.session-card-info b {
+
+    color: #1565C0;
+}
+
+
+/* ---------- FORM ---------- */
+
+.form {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+
+}
+
+.field {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+label {
+
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+
+}
+
+
+/* ---------- INPUT ---------- */
+
+input,
+select {
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8f0;
+
+    outline: none;
+
+    transition: all .18s ease;
+
+    background: #f8fbff;
+
+    font-size: 14px;
+
+}
+
+input:focus,
+select:focus {
+
+    border: 1px solid #1565C0;
+
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, .15);
+
+    background: white;
+
+    transform: scale(1.01);
+
+}
+
+
+/* ---------- AUTOCOMPLETE ---------- */
+
+.autocomplete {
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+
+}
+
+.item {
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.item:hover {
+
+    background: #e3f2fd;
+
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.actions {
+
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+
+/* CANCEL */
+
+.cancel-btn {
+
+    border-radius: 20px;
+
+    padding: 6px 16px;
+
+    border: 1px solid #d1d5db;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.cancel-btn:hover {
+
+    background: #f1f5f9;
+
+}
+
+
+/* SAVE */
+
+.save-btn {
+
+    border-radius: 25px;
+
+    padding: 10px 24px;
+
+    border: none;
+
+    background: linear-gradient(135deg, #1565C0, #00A896);
+
+    color: white;
+
+    font-weight: 600;
+
+    box-shadow: 0 10px 25px rgba(21, 101, 192, .25);
+
+    cursor: pointer;
+
+    transition: all .2s ease;
+
+}
+
+.save-btn:hover {
+
+    transform: translateY(-2px) scale(1.02);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .25);
+
+}
+
+.save-btn:active {
+
+    transform: scale(.95);
+
+}
+
+
+/* ---------- LOADING ---------- */
+
+.loading-box {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+
+    gap: 16px;
+
+    font-weight: 600;
+
+    color: #1565C0;
+
+    animation: fadeIn .2s;
+
+}
+
+.spinner {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 4px solid #e5e7eb;
+
+    border-top: 4px solid #1565C0;
+
+    animation: spin 1s linear infinite;
+
+}
+
+@keyframes spin {
+
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+
+}
+
+
+/* ---------- SUCCESS ---------- */
+
+.success-box {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #00A896;
+
+    animation: successPop .25s ease;
+
+}
+
+@keyframes successPop {
+
+    from {
+
+        transform: scale(.8);
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: scale(1);
+        opacity: 1;
+
+    }
+
+}
+
+/* =========================================
+   DIALOG RESPONSIVE FIX
+========================================= */
+
+.dialog-container {
+
+    width: 100%;
+    max-width: 520px;
+    min-width: unset;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+    .dialog-container {
+
+        max-width: 480px;
+        padding: 24px;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .dialog-container {
+
+        max-width: 100%;
+        width: 100%;
+
+        padding: 18px;
+
+        border-radius: 18px;
+
+    }
+
+    .dialog-header {
+
+        gap: 10px;
+
+    }
+
+    .icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+
+    }
+
+    .title h2 {
+
+        font-size: 18px;
+
+    }
+
+    .title p {
+
+        font-size: 11px;
+
+    }
+
+
+    /* info box */
+
+    .session-card-info {
+
+        padding: 10px;
+        font-size: 12px;
+
+    }
+
+    .session-card-info .row {
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+
+    }
+
+
+    /* form */
+
+    input,
+    select {
+
+        font-size: 13px;
+        padding: 10px;
+
+    }
+
+
+    /* buttons */
+
+    .actions {
+
+        flex-direction: column;
+
+    }
+
+    .cancel-btn,
+    .save-btn {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .dialog-container {
+
+        padding: 14px;
+
+    }
+
+    .title h2 {
+
+        font-size: 16px;
+
+    }
+
+    .session-card-info {
+
+        font-size: 11px;
+
+    }
+
+    .save-btn {
+
+        padding: 10px;
+
+    }
+
+}

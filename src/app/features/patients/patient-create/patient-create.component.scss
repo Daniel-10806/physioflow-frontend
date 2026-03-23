@@ -1,0 +1,568 @@
+.patient-container {
+
+    min-height: 100vh;
+    padding: 80px 20px;
+
+    display: flex;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, .07), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, .06), transparent 40%),
+        #f8fafc;
+
+}
+
+.patient-card {
+
+    width: 900px;
+
+    padding: 42px;
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, .08),
+        0 6px 20px rgba(0, 0, 0, .05);
+
+    animation: fadeCard .35s ease;
+
+}
+
+@keyframes fadeCard {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+mat-form-field.mat-form-field-invalid .mdc-notched-outline__leading,
+mat-form-field.mat-form-field-invalid .mdc-notched-outline__notch,
+mat-form-field.mat-form-field-invalid .mdc-notched-outline__trailing {
+
+    border-color: #ef4444 !important;
+
+}
+
+
+/* HEADER */
+
+.card-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 35px;
+
+}
+
+.header-left {
+
+    display: flex;
+    gap: 18px;
+    align-items: center;
+
+}
+
+.icon {
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+
+    color: white;
+
+}
+
+.icon mat-icon {
+
+    font-size: 30px;
+
+}
+
+.subtitle {
+
+    margin: 4px 0 0;
+
+    font-size: 13px;
+
+    color: #64748b;
+
+}
+
+
+/* AVATAR */
+
+.avatar-preview {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 12px;
+    color: #64748b;
+
+}
+
+.avatar-section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.avatar {
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background: #eef2ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+.avatar img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.age-display {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #2563eb;
+
+    background: #eef2ff;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    width: fit-content;
+
+}
+
+.age-suffix {
+
+    position: relative;
+    top: -8px;
+    /* 👈 esto sí lo sube */
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #1d43d8;
+    background: #e0e7ff;
+
+    padding: 13px 8px;
+
+    border-radius: 999px;
+
+    margin-right: 8px;
+
+    border: 1px solid #dbeafe;
+
+}
+
+.age-display mat-icon {
+
+    font-size: 16px;
+
+    color: #2563eb;
+
+}
+
+.mat-datepicker-content {
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, .15) !important;
+
+}
+
+.birth-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+.avatar-circle {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef2ff;
+
+    color: #2563eb;
+
+}
+
+
+/* SECTION CARD */
+
+.section-card {
+
+    background: #fafcff;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    margin-bottom: 24px;
+
+    border: 1px solid #e5e7eb;
+
+}
+
+.section-header {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+    color: #334155;
+
+}
+
+.section-header mat-icon {
+
+    font-size: 18px;
+    color: #2563eb;
+
+}
+
+
+/* GRID */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+.full-width {
+
+    width: 100%;
+
+}
+
+
+/* INPUTS */
+
+mat-form-field {
+
+    width: 100%;
+
+}
+
+textarea {
+
+    resize: none;
+
+}
+
+
+/* ACTIONS */
+
+.actions {
+
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+
+}
+
+.btn-save {
+
+    padding: 12px 26px;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    line-height: normal;
+    /* mejor que line-height:1 */
+
+}
+
+.btn-content {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+}
+
+.btn-content mat-icon {
+
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+
+}
+
+.btn-save:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 6px 14px rgba(37, 99, 235, .25);
+
+}
+
+.btn-save mat-progress-spinner {
+
+    margin-right: 6px;
+
+}
+
+.btn-save mat-icon {
+
+    opacity: .9;
+
+}
+
+.btn-cancel {
+
+    border-radius: 10px;
+
+}
+
+/* ======================================
+   RESPONSIVE PATIENT FORM
+====================================== */
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+
+    .patient-card {
+        width: 100%;
+        padding: 28px;
+    }
+
+    .patient-container {
+        padding: 40px 15px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    /* CARD */
+
+    .patient-card {
+
+        width: 100%;
+
+        padding: 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    /* HEADER */
+
+    .card-header {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 15px;
+
+        text-align: center;
+
+    }
+
+    .header-left {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+    .icon {
+
+        width: 50px;
+        height: 50px;
+
+    }
+
+    .icon mat-icon {
+        font-size: 24px;
+    }
+
+
+    /* AVATAR */
+
+    .avatar-section {
+
+        width: 100%;
+
+    }
+
+    .avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+
+    /* GRID -> 1 column */
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+
+    }
+
+
+    /* SECTION */
+
+    .section-card {
+
+        padding: 16px;
+
+        margin-bottom: 16px;
+
+    }
+
+
+    /* AGE BADGE */
+
+    .age-suffix {
+
+        font-size: 10px;
+
+        padding: 8px 6px;
+
+        top: -6px;
+
+    }
+
+
+    /* ACTIONS */
+
+    .actions {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+    .actions button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px) {
+
+    .patient-container {
+
+        padding: 20px 8px;
+
+    }
+
+    .patient-card {
+
+        padding: 12px;
+
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+    }
+
+    .section-header {
+
+        font-size: 13px;
+
+    }
+
+}

@@ -1,0 +1,947 @@
+.agenda-page {
+    padding: 50px;
+    background: #f5f7fb;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.agenda-header {
+    margin-bottom: 40px;
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 18px 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    margin-bottom: 25px;
+}
+
+.agenda-header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #1565C0;
+}
+
+.header-center {
+
+    text-align: center;
+
+}
+
+.header-center h1 {
+
+    margin: 0;
+    font-size: 26px;
+    color: #1565C0;
+
+}
+
+.header-center p {
+
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #6B7280;
+
+}
+
+.header-right {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: nowrap;
+
+}
+
+.week-nav {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-weight: 600;
+    color: #374151;
+
+}
+
+.week-nav button {
+
+    border: none;
+    background: #E3F2FD;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+.agenda-header p {
+    margin-top: 6px;
+    color: #6B7280;
+    font-size: 14px;
+}
+
+.time {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+
+}
+
+.hour {
+
+    font-weight: 600;
+    color: #1565C0;
+    font-size: 18px;
+
+}
+
+.line {
+
+    width: 2px;
+    flex: 1;
+    background: #e3e8f0;
+    margin-top: 6px;
+
+}
+
+.session-content {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.session-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.session-body {
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #6B7280;
+}
+
+/* Colores por tipo */
+
+.session-card.fisioterapia {
+    border-left-color: #1565C0;
+}
+
+.session-card.rehabilitacion {
+    border-left-color: #00A896;
+}
+
+.session-card.evaluacion {
+    border-left-color: #F59E0B;
+}
+
+.empty-slot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 20px;
+    color: #9CA3AF;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.warning-snackbar {
+
+    background: #fff4e5;
+    color: #b45309;
+    font-weight: 500;
+    border-left: 6px solid #f59e0b;
+
+}
+
+.empty-slot:hover {
+    color: #1565C0;
+}
+
+.plus {
+    font-size: 16px;
+}
+
+.patient {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+
+}
+
+.avatar {
+
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1565C0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+
+}
+
+.top-bar {
+
+    margin-bottom: 15px;
+
+}
+
+.back-btn {
+
+    border: none;
+    background: #E3F2FD;
+    color: #1565C0;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+
+}
+
+.back-btn:hover {
+
+    background: #d0e7ff;
+
+}
+
+.patient h3 {
+
+    margin: 0;
+    font-size: 15px;
+
+}
+
+.type {
+
+    font-size: 12px;
+    color: #6B7280;
+
+}
+
+.agenda-actions {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 20px;
+}
+
+.new-session-btn {
+
+    white-space: nowrap;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 24px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #1565C0, #00A896);
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: all .18s ease;
+
+}
+
+.new-session-btn:hover {
+
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+    transition: all .18s ease;
+
+}
+
+.agenda-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.date-nav {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+
+}
+
+.date-nav button {
+
+    border: none;
+    background: #E3F2FD;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.agenda-grid {
+
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.agenda-timeline {
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+
+    overflow: hidden;
+
+}
+
+.empty-slot {
+
+    color: #9CA3AF;
+    font-size: 13px;
+}
+
+.hour-row {
+
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    border-bottom: 1px solid #eef2f6;
+    min-height: 80px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.hour-label {
+    border-right: 1px solid #eef2f6;
+}
+
+.hour-row:hover {
+
+    background: #f8fbff;
+
+}
+
+.hour-label {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #6b7280;
+
+}
+
+.hour-content {
+
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+}
+
+.date-nav span {
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+
+}
+
+.session-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    background: white;
+    border-left: 6px solid #1565C0;
+    padding: 16px 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.session-block.fisioterapia {
+
+    border-left-color: #1565C0;
+
+}
+
+.session-block.rehabilitacion {
+
+    border-left-color: #00A896;
+
+}
+
+.session-block.evaluacion {
+
+    border-left-color: #F59E0B;
+
+}
+
+.session-block {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 10px 20px;
+    padding: 6px 8px;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+    gap: 2px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    border-radius: 6px;
+    background: #E3F2FD;
+    border-left: 4px solid #1565C0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    min-height: 36px;
+    transition: all .15s ease;
+}
+
+.session-left {
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+
+}
+
+.session-right {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 120px;
+    gap: 4px;
+    text-align: right;
+
+}
+
+.session-patient {
+
+    font-weight: 600;
+    font-size: 15px;
+    color: #111827;
+
+}
+
+.session-type {
+
+    font-size: 10px;
+    color: #6B7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    opacity: .7;
+}
+
+.session-time {
+
+    font-size: 11px;
+    font-weight: 600;
+    color: #1565C0;
+
+}
+
+.session-duration {
+
+    font-size: 12px;
+    color: #9CA3AF;
+
+}
+
+.session-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.time-block {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1565C0;
+    min-width: 80px;
+}
+
+.time-label {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+
+    color: #6b7280;
+
+    border-right: 1px solid #eef2f6;
+
+}
+
+.success-snackbar {
+
+    background: #e6f7f1;
+    color: #00A896;
+    font-weight: 600;
+
+}
+
+.time-slot {
+
+    display: grid;
+
+    grid-template-columns: 110px 1fr;
+
+    border-bottom: 1px solid #eef2f6;
+
+    min-height: 85px;
+
+    transition: background .15s;
+
+}
+
+.time-slot:hover {
+
+    background: #f8fbff;
+
+}
+
+.session-info {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.session-info h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.session-info p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #6B7280;
+}
+
+.status {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    background: #e3f2fd;
+    color: #1565C0;
+}
+
+.status.programada {
+    background: #e3f2fd;
+    color: #1565C0;
+}
+
+.status.completada {
+    background: #e6f7f1;
+    color: #00A896;
+}
+
+.status.cancelada {
+    background: #fdecea;
+    color: #c62828;
+}
+
+.empty-card {
+    padding: 30px;
+    text-align: center;
+    color: #9CA3AF;
+}
+
+.agenda-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.title-block h1 {
+    margin: 0;
+    color: #1565C0;
+}
+
+.title-block p {
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    color: #6B7280;
+}
+
+.top-nav {
+
+    margin-bottom: 20px;
+
+}
+
+.patient-row {
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+}
+
+.patient-info {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+}
+
+.avatar {
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565C0, #00A896);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 600;
+    font-size: 14px;
+
+}
+
+.top-nav a {
+
+    color: #1565C0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+
+}
+
+.top-nav a:hover {
+    text-decoration: underline;
+}
+
+.type-badge {
+
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    width: auto;
+    max-width: max-content;
+}
+
+.type-badge.fisioterapia {
+    background: #E3F2FD;
+    color: #1565C0;
+}
+
+.type-badge.rehabilitacion {
+    background: #E6F7F1;
+    color: #00A896;
+}
+
+.type-badge.evaluacion {
+    background: #FFF4E5;
+    color: #F59E0B;
+}
+
+/* =========================================
+   AGENDA HEADER RESPONSIVE
+========================================= */
+
+.agenda-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+}
+
+
+/* lado izquierdo */
+
+.agenda-left {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+}
+
+
+/* lado derecho */
+
+.agenda-right {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+    .agenda-header {
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+
+    }
+
+    .agenda-right {
+
+        width: 100%;
+        justify-content: space-between;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .agenda-header {
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+
+    }
+
+    .agenda-left {
+
+        text-align: center;
+
+    }
+
+    .agenda-right {
+
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+    }
+
+    .btn-new-session {
+
+        width: 100%;
+        justify-content: center;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .agenda-title {
+
+        font-size: 20px;
+
+    }
+
+    .agenda-subtitle {
+
+        font-size: 12px;
+
+    }
+
+}
+
+/* =========================================
+   HEADER RESPONSIVE REAL
+========================================= */
+
+.agenda-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+}
+
+
+/* columnas */
+
+.header-left {
+    flex: 1;
+}
+
+
+.header-center {
+    flex: 2;
+    text-align: center;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+    .agenda-header {
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+
+    }
+
+    .header-left {
+        order: 1;
+    }
+
+    .header-center {
+        order: 2;
+        text-align: center;
+    }
+
+    .header-right {
+
+        order: 3;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .agenda-page {
+        padding: 20px 12px;
+    }
+
+    .agenda-header {
+
+        padding: 18px;
+        gap: 14px;
+
+    }
+
+    .header-center h1 {
+        font-size: 22px;
+    }
+
+    .header-center p {
+        font-size: 12px;
+    }
+
+    .header-right {
+
+        flex-direction: column;
+        align-items: stretch;
+
+    }
+
+    .new-session-btn {
+        width: 100%;
+    }
+
+    .week-nav {
+
+        width: 100%;
+        justify-content: space-between;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .header-center h1 {
+        font-size: 20px;
+    }
+
+    .agenda-header {
+        padding: 14px;
+    }
+
+    .week-nav span {
+        font-size: 12px;
+        text-align: center;
+    }
+
+}

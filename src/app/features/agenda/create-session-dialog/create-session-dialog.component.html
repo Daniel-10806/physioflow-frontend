@@ -1,0 +1,287 @@
+<div class="dialog-wrapper">
+
+    <div class="dialog-header">
+
+        <div class="header-icon">
+            🩺
+        </div>
+
+        <div class="header-text">
+            <h2>{{ data?.id ? 'EDITAR SESIÓN' : 'NUEVA SESIÓN' }}</h2>
+            <p>REGISTRAR SESIÓN FISIOTERAPÉUTICA</p>
+        </div>
+
+    </div>
+
+    <div class="patient-card" *ngIf="patientName && patientName !== 'Paciente'">
+
+        <div class="avatar">
+            {{ patientName?.charAt(0) }}
+        </div>
+
+        <div class="patient-info">
+
+            <span class="label">
+                PACIENTE
+            </span>
+
+            <strong class="name">
+                {{ patientName || 'Seleccionar paciente' }}
+            </strong>
+
+        </div>
+
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="session-form">
+
+        <div class="form-section">
+
+            <div class="section-title">
+                INFORMACIÓN DE LA SESIÓN
+            </div>
+
+            <div class="grid">
+
+                <!-- PACIENTE -->
+
+                <mat-form-field appearance="outline" *ngIf="!data?.id">
+
+                    <mat-label>Paciente</mat-label>
+
+                    <mat-select formControlName="patientId">
+
+                        <mat-select-trigger>
+                            {{ patientName || 'Seleccionar paciente' }}
+                        </mat-select-trigger>
+
+                        <mat-option *ngFor="let p of patients" [value]="p.id">
+
+                            <div class="patient-option">
+
+                                <div class="avatar-small">
+                                    {{p.fullName.charAt(0)}}
+                                </div>
+
+                                <span>{{p.fullName}}</span>
+
+                            </div>
+
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+
+                <!-- FECHA -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Fecha de sesión</mat-label>
+
+                    <input matInput type="date" formControlName="sessionDate">
+
+                </mat-form-field>
+
+
+                <!-- HORA -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Hora disponible</mat-label>
+
+                    <mat-select formControlName="sessionTime">
+
+                        <mat-option *ngFor="let h of availableHours" [value]="h.value" [disabled]="h.occupied">
+
+                            <div class="hour-option">
+
+                                <div class="hour-left">
+
+                                    <span class="hour-time">
+                                        {{ h.value }}
+                                    </span>
+
+                                </div>
+
+                                <div class="hour-badge" [class.free]="!h.occupied" [class.busy]="h.occupied">
+
+                                    <span class="dot"></span>
+
+                                    {{ h.occupied ? 'Ocupado' : 'Disponible' }}
+
+                                </div>
+
+                            </div>
+
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+
+                <!-- DURACIÓN -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Duración</mat-label>
+
+                    <mat-select formControlName="durationMinutes">
+
+                        <mat-option value="30">30 min</mat-option>
+                        <mat-option value="45">45 min</mat-option>
+                        <mat-option value="60">60 min</mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+
+                <!-- TIPO -->
+
+                <mat-form-field appearance="outline" class="full-width">
+
+                    <mat-label>Tipo de servicio</mat-label>
+
+                    <mat-select formControlName="type">
+
+                        <mat-option value="FISIOTERAPIA">
+                            🦵 Fisioterapia general
+                        </mat-option>
+
+                        <mat-option value="REHABILITACION">
+                            ♿ Rehabilitación física
+                        </mat-option>
+
+                        <mat-option value="ELECTROTERAPIA">
+                            ⚡ Electroterapia
+                        </mat-option>
+
+                        <mat-option value="MASOTERAPIA">
+                            💆 Masoterapia
+                        </mat-option>
+
+                        <mat-option value="EVALUACION">
+                            📋 Evaluación clínica
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+            </div>
+        </div>
+
+        <!-- CAMPOS DINÁMICOS -->
+
+        <div class="dynamic-section">
+
+            <!-- REHABILITACION -->
+
+            <div *ngIf="selectedType === 'REHABILITACION'" class="dynamic-block">
+
+                <div class="section-title">
+                    DATOS DE REHABILITACIÓN
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Movilidad</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Fuerza</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Dolor</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+
+            </div>
+
+
+            <!-- ELECTROTERAPIA -->
+
+            <div *ngIf="selectedType === 'ELECTROTERAPIA'" class="dynamic-block">
+
+                <div class="section-title">
+                    ELECTROTERAPIA
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo corriente</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Intensidad</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+            </div>
+
+
+            <!-- MASOTERAPIA -->
+
+            <div *ngIf="selectedType === 'MASOTERAPIA'" class="dynamic-block">
+
+                <div class="section-title">
+                    MASOTERAPIA
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Zona</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Técnica</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+            </div>
+
+
+            <!-- EVALUACION -->
+
+            <div *ngIf="selectedType === 'EVALUACION'" class="dynamic-block">
+
+                <div class="section-title">
+                    EVALUACIÓN CLÍNICA
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Diagnóstico</mat-label>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Observaciones</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button mat-stroked-button type="button" (click)="cancel()" class="btn-cancel">
+                CANCELAR
+            </button>
+
+            <button mat-raised-button type="submit" [disabled]="form.invalid || saving" class="btn-save">
+
+                {{ saving ? 'GUARDANDO...' : 'REGISTRAR SESIÓN' }}
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,113 @@
+<form [formGroup]="form" class="record-container">
+
+    <div class="record-card">
+
+        <div class="record-header">
+
+            <div class="record-icon">
+                🩺
+            </div>
+
+            <div>
+                <h2>REGISTRO CLÍNICO</h2>
+                <p>EVALUACIÓN FISIOTERAPÉUTICA DE LA SESIÓN</p>
+            </div>
+
+        </div>
+
+        <div class="soap-grid">
+
+            <div class="soap-field">
+                <label>SUBJETIVO</label>
+                <textarea rows="3" formControlName="subjective"
+                    placeholder="Motivo de consulta, síntomas referidos por el paciente, evolución desde la última sesión, dolor, molestias, limitaciones funcionales...">
+</textarea>
+            </div>
+
+            <div class="soap-field">
+                <label>OBJETIVO</label>
+                <textarea rows="3" formControlName="objective"
+                    placeholder="Hallazgos observados en la evaluación: postura, rango de movimiento, palpación, inflamación, marcha, pruebas funcionales...">
+</textarea>
+            </div>
+
+            <div class="soap-field">
+                <label>EVALUACIÓN</label>
+                <textarea rows="3" formControlName="assessment"
+                    placeholder="Análisis clínico del fisioterapeuta, diagnóstico funcional, progreso del paciente, respuesta al tratamiento...">
+</textarea>
+            </div>
+
+            <div class="soap-field">
+                <label>TRATAMIENTO</label>
+                <textarea rows="3" formControlName="treatment"
+                    placeholder="Técnicas aplicadas: terapia manual, electroterapia, ejercicios, estiramientos, movilizaciones, recomendaciones...">
+</textarea>
+            </div>
+
+            <div class="soap-field full">
+                <label>NOTAS CLÍNICAS</label>
+                <textarea rows="3" formControlName="progressNotes"
+                    placeholder="Observaciones adicionales, indicaciones para el paciente, evolución, recomendaciones domiciliarias, próxima sesión...">
+</textarea>
+            </div>
+
+        </div>
+
+        <div class="metrics-grid">
+
+            <div class="metric-card pain">
+
+                <label>DOLOR</label>
+
+                <div class="metric-value">
+                    {{form.get('painLevel')?.value}}
+                </div>
+
+                <input type="range" min="0" max="10" formControlName="painLevel">
+
+            </div>
+
+            <div class="metric-card mobility">
+
+                <label>MOVILIDAD</label>
+
+                <div class="metric-value">
+                    {{form.get('mobilityLevel')?.value}}
+                </div>
+
+                <input type="range" min="0" max="10" formControlName="mobilityLevel">
+
+            </div>
+
+            <div class="metric-card strength">
+
+                <label>FUERZA</label>
+
+                <div class="metric-value">
+                    {{form.get('strengthLevel')?.value}}
+                </div>
+
+                <input type="range" min="0" max="10" formControlName="strengthLevel">
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button type="button" class="cancel-btn" (click)="cancel()">
+
+                CANCELAR
+
+            </button>
+
+            <button class="save-btn" (click)="save()">
+                GUARDAR EVOLUCIÓN
+            </button>
+
+        </div>
+
+    </div>
+
+</form>

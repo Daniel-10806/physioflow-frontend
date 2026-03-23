@@ -1,0 +1,460 @@
+/* CONTAINER */
+
+.auth-container {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(135deg, #1f6fb2, #1db9a5);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* BACKGROUND EFFECT */
+
+.background-pattern {
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12), transparent 40%);
+}
+
+/* CARD */
+
+.auth-card {
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 2.5rem;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.15);
+
+    animation: fadeIn .6s ease;
+
+    z-index: 2;
+}
+
+/* BRAND */
+
+.brand {
+
+    margin-bottom: 1.8rem;
+
+}
+
+.logo-circle {
+
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg, #1f6fb2, #1db9a5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    color: white;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #1f6fb2;
+}
+
+.brand h2 {
+
+    margin: .3rem 0;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    color: #333;
+}
+
+.brand p {
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+/* FORM */
+
+.auth-form {
+
+    margin-top: 10px;
+
+}
+
+.full-width {
+
+    width: 100%;
+    margin-bottom: 1.1rem;
+
+}
+
+/* FORM GRID */
+
+.grid-form {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-top: 12px;
+
+}
+
+/* CAMPOS */
+
+.form-field {
+
+    width: 100%;
+
+}
+
+/* CAMPOS QUE OCUPAN TODO */
+
+.form-field.full {
+
+    grid-column: span 2;
+
+}
+
+/* BUTTON PRINCIPAL */
+
+.primary-button {
+
+    width: 100%;
+
+    height: 50px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(135deg, #1f6fb2, #1db9a5);
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    letter-spacing: .5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .25s ease;
+}
+
+.register-button {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    justify-self: center;
+
+    margin-top: 6px;
+
+}
+
+.primary-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* SECONDARY BUTTON */
+
+.secondary-button {
+
+    width: 100%;
+
+    height: 45px;
+
+    border-radius: 30px;
+
+    margin-top: .8rem;
+
+    border: 2px solid #1f6fb2;
+
+    color: #1f6fb2;
+
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+.secondary-button:hover {
+
+    background: #1f6fb2;
+
+    color: white;
+
+}
+
+/* DIVIDER */
+
+.divider {
+
+    margin: 1.2rem 0;
+
+    font-size: 13px;
+
+    color: #888;
+
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+/* 📱 MOBILE */
+
+@media (max-width: 600px) {
+
+    .auth-card {
+
+        padding: 1.8rem;
+
+        border-radius: 20px;
+
+    }
+
+    .logo-circle {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 24px;
+
+    }
+
+    .brand h1 {
+
+        font-size: 18px;
+
+    }
+
+    .brand h2 {
+
+        font-size: 14px;
+
+    }
+
+    .brand p {
+
+        font-size: 12px;
+
+    }
+
+}
+
+/* 📲 TABLET */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+
+    .auth-card {
+
+        max-width: 520px;
+
+        padding: 2.6rem;
+
+    }
+
+}
+
+/* 💻 LAPTOP GRANDE */
+
+@media (min-width: 1400px) {
+
+    .auth-card {
+
+        max-width: 560px;
+
+        padding: 3rem;
+
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .grid-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .form-field.full {
+
+        grid-column: span 1;
+
+    }
+
+}
+
+/* ========================= */
+/* FORM GRID COMPACT */
+/* ========================= */
+
+.grid-form {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-top: 12px;
+
+}
+
+/* CAMPOS */
+
+.form-field {
+
+    width: 100%;
+
+}
+
+/* CAMPOS QUE OCUPAN 2 COLUMNAS */
+
+.span-2 {
+
+    grid-column: span 2;
+
+}
+
+/* BOTÓN */
+
+.register-button {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin-top: 10px;
+
+}
+
+/* INPUTS MÁS COMPACTOS */
+
+.mat-mdc-form-field {
+
+    font-size: 14px;
+
+}
+
+.mat-mdc-text-field-wrapper {
+
+    border-radius: 16px;
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .grid-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .span-2 {
+
+        grid-column: span 1;
+
+    }
+
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+
+    .auth-card {
+
+        max-width: 500px;
+
+    }
+
+}
+
+/* ========================= */
+/* LAPTOP GRANDE */
+/* ========================= */
+
+@media (min-width: 1400px) {
+
+    .auth-card {
+
+        max-width: 540px;
+
+    }
+
+}

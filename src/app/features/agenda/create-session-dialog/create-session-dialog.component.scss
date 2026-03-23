@@ -1,0 +1,684 @@
+.dialog-wrapper {
+
+    width: 100%;
+    max-width: 540px;
+    padding: 28px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+    overflow-x: hidden;
+}
+
+@keyframes dialogEnter {
+
+    from {
+        transform: scale(.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.mat-mdc-form-field {
+
+    --mdc-outlined-text-field-outline-color: #e3e8f0;
+
+}
+
+.mat-mdc-form-field:hover {
+
+    --mdc-outlined-text-field-outline-color: #1565C0;
+
+}
+
+.form-section {
+
+    margin-top: 10px;
+
+}
+
+.section-title {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #1565C0;
+
+    margin-bottom: 12px;
+
+}
+
+.btn-save {
+
+    background: linear-gradient(135deg, #1565C0, #00A896);
+
+    color: white !important;
+
+    font-weight: 600;
+
+    border-radius: 28px;
+
+    padding: 10px 24px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+
+}
+
+.btn-save:disabled {
+
+    background: #cbd5e1 !important;
+
+    color: #64748b !important;
+
+    box-shadow: none;
+
+}
+
+.btn-save:hover {
+
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+
+}
+
+.btn-cancel {
+
+    border: 1px solid #E5E7EB;
+
+}
+
+.btn-cancel:hover {
+
+    background: #F9FAFB;
+
+}
+
+.dialog-header {
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #EEF2F6;
+}
+
+.duration-field input {
+
+    padding-right: 30px;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+.btn-cancel {
+
+    border-radius: 24px;
+
+    padding: 8px 26px;
+
+}
+
+.btn-save {
+
+    border-radius: 24px;
+
+    padding: 8px 28px;
+
+    box-shadow: 0 6px 14px rgba(21, 101, 192, 0.25);
+
+}
+
+.duration-suffix {
+
+    font-size: 12px;
+    color: #6B7280;
+
+    margin-right: 8px;
+
+}
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+}
+
+.full-width {
+
+    grid-column: span 2;
+
+}
+
+.hour-option {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.hour-time {
+
+    font-weight: 500;
+
+}
+
+.hour-status {
+
+    font-size: 11px;
+    color: #00A896;
+
+}
+
+.hour-status.occupied {
+
+    color: #C62828;
+
+}
+
+.header-icon {
+
+    font-size: 26px;
+    background: #E3F2FD;
+    padding: 12px;
+    border-radius: 14px;
+
+}
+
+.dialog-header h2 {
+
+    margin: 0;
+    font-size: 20px;
+    color: #1565C0;
+
+}
+
+.header-text h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+    color: #1565C0;
+
+}
+
+.header-text p {
+
+    margin: 2px 0 0;
+
+    font-size: 13px;
+    color: #6B7280;
+
+}
+
+.dialog-header p {
+
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #6B7280;
+
+}
+
+.patient-option {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.avatar-small {
+
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+
+    background: #1565C0;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 600;
+
+}
+
+.hour-option {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.hour-time {
+
+    font-weight: 600;
+
+}
+
+.hour-status {
+
+    font-size: 11px;
+    color: #16a34a;
+
+}
+
+.hour-status.occupied {
+
+    color: #dc2626;
+
+}
+
+.patient-card {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #F7FAFF;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #E6EDFF;
+}
+
+.avatar {
+
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565C0, #00A896);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+
+}
+
+.patient-info span {
+
+    font-size: 11px;
+    color: #6B7280;
+
+}
+
+.patient-info {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.label {
+
+    font-size: 11px;
+    color: #6B7280;
+
+}
+
+.name {
+
+    font-size: 14px;
+    font-weight: 600;
+
+}
+
+.session-form {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.actions {
+
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 10px;
+
+}
+
+.session-form .grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+
+    margin-bottom: 16px;
+
+}
+
+mat-form-field {
+
+    width: 100%;
+
+}
+
+.mat-mdc-text-field-wrapper {
+
+    border-radius: 12px;
+
+}
+
+.mat-mdc-form-field {
+
+    --mdc-outlined-text-field-container-height: 56px;
+    --mdc-outlined-text-field-outline-color: #e3e8f0;
+}
+
+.mat-mdc-form-field:hover {
+
+    --mdc-outlined-text-field-outline-color: #1565C0;
+
+}
+
+.patient-info strong {
+
+    display: block;
+    font-size: 14px;
+
+}
+
+.actions {
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 24px;
+
+}
+
+button {
+
+    border-radius: 24px;
+    padding: 8px 22px;
+    font-weight: 500;
+}
+
+/* =========================================
+   FIX MAT SELECT HOURS
+========================================= */
+
+.hour-option {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+}
+
+.hour-time {
+
+    font-weight: 600;
+    min-width: 60px;
+
+}
+
+.hour-status {
+
+    font-size: 11px;
+    white-space: nowrap;
+
+}
+
+
+/* ancho del panel */
+
+::ng-deep .mat-mdc-select-panel {
+
+    min-width: 220px !important;
+
+}
+
+
+/* evitar que se pegue el texto */
+
+::ng-deep .mat-mdc-option {
+
+    white-space: normal !important;
+
+}
+
+
+/* =========================================
+   MOBILE FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    ::ng-deep .mat-mdc-select-panel {
+
+        min-width: 180px !important;
+
+    }
+
+    .hour-option {
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    ::ng-deep .mat-mdc-select-panel {
+
+        min-width: 160px !important;
+
+    }
+
+    .hour-time {
+
+        min-width: 50px;
+
+    }
+
+}
+
+/* =========================================
+   GOOGLE CALENDAR HOURS STYLE
+========================================= */
+
+.hour-option {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+}
+
+
+/* LEFT */
+
+.hour-left {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+}
+
+.hour-time {
+
+    font-weight: 600;
+    font-size: 14px;
+    color: #111827;
+
+}
+
+
+/* BADGE */
+
+.hour-badge {
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 3px 8px;
+
+    border-radius: 999px;
+
+}
+
+
+/* FREE */
+
+.hour-badge.free {
+
+    background: #E6F7F1;
+    color: #00A896;
+
+}
+
+
+/* BUSY */
+
+.hour-badge.busy {
+
+    background: #FEE2E2;
+    color: #DC2626;
+
+}
+
+
+/* DOT */
+
+.hour-badge .dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+}
+
+
+/* =========================================
+   PANEL WIDTH
+========================================= */
+
+::ng-deep .mat-mdc-select-panel {
+
+    min-width: 240px !important;
+    max-width: 260px !important;
+
+}
+
+
+/* =========================================
+   OPTION HOVER
+========================================= */
+
+::ng-deep .mat-mdc-option {
+
+    border-radius: 8px;
+    margin: 2px 6px;
+
+}
+
+
+::ng-deep .mat-mdc-option:hover {
+
+    background: #F1F5F9;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    ::ng-deep .mat-mdc-select-panel {
+
+        min-width: 200px !important;
+
+    }
+
+    .hour-time {
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    ::ng-deep .mat-mdc-select-panel {
+
+        min-width: 180px !important;
+
+    }
+
+}
+
+.dynamic-section {
+
+    margin-top: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.dynamic-block {
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #f8fbff;
+
+    border: 1px solid #e2e8f0;
+
+}

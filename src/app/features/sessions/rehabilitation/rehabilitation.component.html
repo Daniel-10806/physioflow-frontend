@@ -1,0 +1,45 @@
+<div class="rehab-page">
+
+    <mat-card class="rehab-card">
+
+        <h2>Registro de rehabilitación</h2>
+
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Dolor (0-10)</mat-label>
+                <input matInput type="number" formControlName="pain">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Movilidad (0-10)</mat-label>
+                <input matInput type="number" formControlName="mobility">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Fuerza (0-10)</mat-label>
+                <input matInput type="number" formControlName="strength">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Notas clínicas</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+
+            <div class="actions">
+
+                <button mat-stroked-button routerLink="/agenda">
+                    Cancelar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+                    Guardar evolución
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

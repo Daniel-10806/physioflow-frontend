@@ -1,0 +1,350 @@
+.record-container {
+
+    max-width: 950px;
+    margin: auto;
+
+    padding: 50px 20px;
+
+    background: #f1f5f9;
+    min-height: 100vh;
+
+    font-family: "Inter", system-ui;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.record-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .08),
+        0 4px 12px rgba(0, 0, 0, .04);
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.record-header {
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 32px;
+
+}
+
+.record-icon {
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg, #1565c0, #00a896);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 26px;
+    color: white;
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .15);
+
+}
+
+.record-header h2 {
+
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+
+    color: #0f172a;
+
+}
+
+.record-header p {
+
+    margin: 4px 0 0;
+    font-size: 13px;
+
+    color: #64748b;
+
+}
+
+
+/* =========================
+   SOAP GRID
+========================= */
+
+.soap-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+.soap-field {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.soap-field.full {
+
+    grid-column: span 2;
+
+}
+
+.soap-field label {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #475569;
+
+    margin-bottom: 6px;
+
+}
+
+
+/* textarea moderno */
+
+textarea {
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8f0;
+
+    padding: 12px;
+
+    font-size: 14px;
+
+    resize: none;
+
+    transition: all .2s;
+
+    background: #f8fafc;
+
+}
+
+textarea:focus {
+
+    outline: none;
+
+    border-color: #1565c0;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, .15);
+
+}
+
+
+/* =========================
+   METRICS
+========================= */
+
+.metrics-grid {
+
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+}
+
+.metric-card {
+
+    background: #f8fafc;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e2e8f0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    transition: .2s;
+
+}
+
+.metric-card:hover {
+
+    background: white;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .06);
+
+}
+
+.metric-card label {
+
+    font-size: 12px;
+
+    color: #64748b;
+
+    font-weight: 600;
+
+}
+
+.metric-value {
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+/* colores */
+
+.metric-card.pain .metric-value {
+
+    color: #ef4444;
+
+}
+
+.metric-card.mobility .metric-value {
+
+    color: #3b82f6;
+
+}
+
+.metric-card.strength .metric-value {
+
+    color: #22c55e;
+
+}
+
+
+/* slider */
+
+input[type="range"] {
+
+    accent-color: #1565c0;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 14px;
+
+    margin-top: 35px;
+
+}
+
+.cancel-btn {
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.cancel-btn:hover {
+
+    background: #f1f5f9;
+
+}
+
+.save-btn {
+
+    padding: 12px 24px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: linear-gradient(135deg, #1565c0, #00a896);
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.save-btn:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .15);
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .soap-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .soap-field.full {
+
+        grid-column: span 1;
+
+    }
+
+    .metrics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

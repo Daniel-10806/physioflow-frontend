@@ -1,0 +1,50 @@
+<div class="physio-page">
+
+    <mat-card class="physio-card">
+
+        <h2>Registro de fisioterapia</h2>
+
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Técnica aplicada</mat-label>
+                <input matInput formControlName="technique">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Zona tratada</mat-label>
+                <input matInput formControlName="zone">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Dolor (0-10)</mat-label>
+                <input matInput type="number" formControlName="painLevel">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Movilidad (0-10)</mat-label>
+                <input matInput type="number" formControlName="mobilityLevel">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+
+            <div class="actions">
+
+                <button mat-stroked-button routerLink="/agenda">
+                    Cancelar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

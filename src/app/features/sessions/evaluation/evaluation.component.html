@@ -1,0 +1,50 @@
+<div class="eval-page">
+
+    <mat-card class="eval-card">
+
+        <h2>Evaluación clínica inicial</h2>
+
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Diagnóstico</mat-label>
+                <input matInput formControlName="diagnosis">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Dolor inicial (0-10)</mat-label>
+                <input matInput type="number" formControlName="initialPain">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Movilidad inicial (0-10)</mat-label>
+                <input matInput type="number" formControlName="initialMobility">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Plan de tratamiento</mat-label>
+                <textarea matInput formControlName="treatmentPlan"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+
+            <div class="actions">
+
+                <button mat-stroked-button routerLink="/agenda">
+                    Cancelar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+                    Guardar evaluación
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

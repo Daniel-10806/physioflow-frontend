@@ -1,0 +1,225 @@
+<div class="patient-container">
+
+    <mat-card class="patient-card">
+
+        <!-- HEADER -->
+
+        <div class="card-header">
+
+            <div class="header-left">
+
+                <div class="icon">
+                    <mat-icon>medical_services</mat-icon>
+                </div>
+
+                <div>
+                    <h2>REGISTRO DE PACIENTE</h2>
+                    <p class="subtitle">HISTORIA CLÍNICA INICIAL</p>
+                </div>
+
+            </div>
+
+            <div class="avatar-section">
+
+                <div class="avatar">
+
+                    <mat-icon *ngIf="!photoPreview">person</mat-icon>
+
+                    <img *ngIf="photoPreview" [src]="photoPreview">
+
+                </div>
+
+                <input type="file" accept="image/*" hidden #fileInput (change)="onPhotoSelected($event)">
+
+                <button mat-stroked-button type="button" (click)="fileInput.click()">
+
+                    CAMBIAR FOTO
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="save()">
+
+            <!-- DATOS PERSONALES -->
+
+            <div class="section-card">
+
+                <div class="section-header">
+                    <mat-icon>badge</mat-icon>
+                    <span>DATOS PERSONALES</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre completo</mat-label>
+                        <input matInput formControlName="fullName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>DNI</mat-label>
+                        <input matInput formControlName="dni" maxlength="8">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput formControlName="phone" maxlength="9">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+
+                        <mat-label>Fecha de nacimiento</mat-label>
+
+                        <input matInput [matDatepicker]="picker" formControlName="birthDate">
+
+                        <!-- Edad -->
+                        <span matSuffix class="age-suffix" *ngIf="getAge() !== null">
+
+                            {{ getAge() }} años
+
+                        </span>
+
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+
+                        <mat-datepicker #picker></mat-datepicker>
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sexo</mat-label>
+
+                        <mat-select formControlName="gender">
+
+                            <mat-option value="MALE">
+                                <mat-icon>male</mat-icon> Masculino
+                            </mat-option>
+
+                            <mat-option value="FEMALE">
+                                <mat-icon>female</mat-icon> Femenino
+                            </mat-option>
+
+                        </mat-select>
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seguro médico</mat-label>
+
+                        <mat-select formControlName="insurance">
+
+                            <mat-option value="none">Ninguno</mat-option>
+                            <mat-option value="private">Seguro privado</mat-option>
+                            <mat-option value="essalud">EsSalud</mat-option>
+
+                        </mat-select>
+
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+
+            <!-- CONTACTO EMERGENCIA -->
+
+            <div class="section-card">
+
+                <div class="section-header">
+                    <mat-icon>emergency</mat-icon>
+                    <span>CONTACTO DE EMERGENCIA</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre contacto</mat-label>
+                        <input matInput formControlName="emergencyName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono emergencia</mat-label>
+                        <input matInput formControlName="emergencyPhone">
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+
+            <!-- ANTECEDENTES -->
+
+            <div class="section-card">
+
+                <div class="section-header">
+                    <mat-icon>monitor_heart</mat-icon>
+                    <span>ANTECEDENTES MÉDICOS</span>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+
+                    <mat-label>Antecedentes clínicos</mat-label>
+
+                    <textarea matInput rows="4" formControlName="medicalHistory"
+                        placeholder="Lesiones previas, cirugías, enfermedades..."></textarea>
+
+                </mat-form-field>
+
+            </div>
+
+            <!-- OBSERVACIONES -->
+
+            <div class="section-card">
+
+                <div class="section-header">
+                    <mat-icon>notes</mat-icon>
+                    <span>NOTAS CLÍNICAS</span>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+
+                    <mat-label>Observaciones médicas</mat-label>
+
+                    <textarea matInput rows="4" formControlName="notes"></textarea>
+
+                </mat-form-field>
+
+            </div>
+
+            <div class="actions">
+
+                <button mat-stroked-button type="button" (click)="goBack()">
+
+                    CANCELAR
+
+                </button>
+
+                <button mat-raised-button color="primary" type="submit" class="btn-save"
+                    [disabled]="form.invalid || isSaving">
+
+                    <span class="btn-content" *ngIf="!isSaving">
+                        <mat-icon>save</mat-icon>
+                        <span>REGISTRAR PACIENTE</span>
+                    </span>
+
+                    <span class="btn-content" *ngIf="isSaving">
+                        <mat-progress-spinner diameter="18" mode="indeterminate" strokeWidth="3">
+                        </mat-progress-spinner>
+                        <span>GUARDANDO...</span>
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

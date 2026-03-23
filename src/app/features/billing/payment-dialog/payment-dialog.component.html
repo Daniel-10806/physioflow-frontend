@@ -1,0 +1,114 @@
+<div class="dialog-container">
+
+    <div *ngIf="!loading && !success">
+
+        <div class="dialog-header">
+
+            <div class="icon">💳</div>
+
+            <div class="title">
+
+                <h2>REGISTRAR PAGO</h2>
+                <p>CONFIRMAR PAGO DE SESIÓN CLÍNICA</p>
+
+            </div>
+
+        </div>
+
+        <div class="session-card-info">
+
+            <div class="row">
+                <span>PACIENTE</span>
+                <b>{{ patientSearch }}</b>
+            </div>
+
+            <div class="row">
+                <span>FECHA</span>
+                <b>{{ sessionDate }} {{ sessionTime }}</b>
+            </div>
+
+            <div class="row">
+                <span>TERAPIA</span>
+                <b>{{ type }}</b>
+            </div>
+
+            <div class="row">
+                <span>DURACIÓN</span>
+                <b>{{ duration }} min</b>
+            </div>
+
+            <div class="row">
+                <span>FISIOTERAPEUTA</span>
+                <b>{{ therapist }}</b>
+            </div>
+
+        </div>
+
+        <div class="form">
+
+            <div class="field">
+
+                <label>MONTO</label>
+
+                <input type="number" [(ngModel)]="amount">
+
+            </div>
+
+            <div class="field">
+
+                <label>MÉTODO</label>
+
+                <select [(ngModel)]="method">
+
+                    <option>EFECTIVO</option>
+                    <option>YAPE</option>
+                    <option>PLIN</option>
+                    <option>TARJETA</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="cancel-btn" (click)="close()">
+
+                CANCELAR
+
+            </button>
+
+            <button class="save-btn" (click)="save()">
+
+                GUARDAR PAGO
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOADING -->
+
+    <div *ngIf="loading" class="loading-box">
+
+        <div class="spinner"></div>
+
+        <p>Procesando pago...</p>
+
+    </div>
+
+
+
+    <!-- SUCCESS -->
+
+    <div *ngIf="success" class="success-box">
+
+        ✔ Pago registrado
+
+    </div>
+
+</div>

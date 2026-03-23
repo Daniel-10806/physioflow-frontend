@@ -1,0 +1,39 @@
+.electro-page {
+
+    padding: 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+.electro-card {
+
+    width: 500px;
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+.full {
+
+    width: 100%;
+
+}
+
+.actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+}

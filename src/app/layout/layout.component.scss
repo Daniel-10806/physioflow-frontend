@@ -1,0 +1,81 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #F4F8FB;
+}
+
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #1565C0, #1E88E5);
+    color: white;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+
+    .brand {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 40px;
+    }
+
+    nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: 0.3s;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        &.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+    }
+}
+
+.sidebar nav a {
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 14px;
+}
+
+.sidebar nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(6px);
+}
+
+.sidebar nav a.active {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar {
+    background: white;
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: flex-end;
+
+    .user {
+        font-weight: 500;
+        color: #1E88E5;
+    }
+}
+
+.page {
+    padding: 30px;
+}

@@ -1,0 +1,151 @@
+<div class="history-page">
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <button class="back-btn" (click)="goBack()">
+            ← VOLVER A PACIENTES
+        </button>
+
+        <div class="title-group">
+            <h1>HISTORIAL CLÍNICO</h1>
+            <p class="subtitle">
+                REGISTRO FISIOTERAPÉUTICO DEL PACIENTE
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- PACIENTE -->
+
+    <div class="patient-card" *ngIf="patient">
+
+        <div class="patient-avatar">
+            {{ patient?.fullName?.charAt(0) }}
+        </div>
+
+        <div class="patient-main">
+
+            <div class="patient-header">
+                <div class="patient-name">
+                    {{ patient.fullName }}
+                </div>
+
+                <div class="session-badge">
+                    {{ history.length }} SESIONES
+                </div>
+            </div>
+
+            <div class="patient-contact">
+
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">{{ patient.email }}</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">DNI</span>
+                    <span class="contact-value">{{ patient.dni }}</span>
+                </div>
+
+            </div>
+
+            <div class="patient-diagnosis">
+
+                <div class="diagnosis-label">
+                    Diagnóstico principal
+                </div>
+
+                <div class="diagnosis-value">
+                    {{ patient.mainDiagnosis || 'No registrado' }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div *ngIf="loading" class="loading">
+        CARGANDO HISTORIAL CLÍNICO...
+    </div>
+
+    <!-- VACIO -->
+
+    <div *ngIf="!loading && history.length === 0" class="empty">
+        ESTE PACIENTE AÚN NO TIENE REGISTROS CLÍNICOS
+    </div>
+
+    <!-- TIMELINE -->
+
+    <div *ngIf="!loading && history.length > 0" class="timeline">
+
+        <div *ngFor="let record of history" class="timeline-item">
+
+            <div class="timeline-marker"></div>
+
+            <div class="history-card">
+
+                <div class="history-header">
+
+                    <div class="date">
+                        {{ record.sessionDate }}
+                        <span class="time">
+                            {{ record.sessionTime }}
+                        </span>
+                    </div>
+
+                    <div class="badge">
+                        {{ record.type }}
+                    </div>
+
+                </div>
+
+                <div class="history-grid">
+
+                    <div class="soap-block">
+                        <div class="soap-title">Subjetivo</div>
+                        <div class="soap-text">{{ record.subjective }}</div>
+                    </div>
+
+                    <div class="soap-block">
+                        <div class="soap-title">Objetivo</div>
+                        <div class="soap-text">{{ record.objective }}</div>
+                    </div>
+
+                    <div class="soap-block">
+                        <div class="soap-title">Evaluación</div>
+                        <div class="soap-text">{{ record.assessment }}</div>
+                    </div>
+
+                    <div class="soap-block">
+                        <div class="soap-title">Tratamiento</div>
+                        <div class="soap-text">{{ record.treatment }}</div>
+                    </div>
+
+                </div>
+
+                <div class="notes">
+
+                    <div class="notes-title">
+                        Notas clínicas
+                    </div>
+
+                    <div class="notes-body">
+                        {{ record.progressNotes }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
