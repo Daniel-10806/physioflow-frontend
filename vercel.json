@@ -1,5 +1,5 @@
 {
-    "outputDirectory": "dist/physioflow-frontend",
+    "outputDirectory": "dist/physioflow-frontend/browser",
     "routes": [
         {
             "src": "/(.*)",
