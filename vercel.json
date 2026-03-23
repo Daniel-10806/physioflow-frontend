@@ -1,11 +1,9 @@
 {
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist/physioflow-frontend",
-    "framework": null,
-    "routes": [
+    "outputDirectory": "dist/physioflow-frontend/browser",
+    "rewrites": [
         {
-            "src": "/(.*)",
-            "dest": "/index.html"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
