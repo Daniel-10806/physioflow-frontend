@@ -21,6 +21,8 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/physioflow-frontend",
+            "baseHref": "/",
+            "deployUrl": "/",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
