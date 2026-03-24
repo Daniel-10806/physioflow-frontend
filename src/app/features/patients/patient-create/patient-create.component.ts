@@ -91,21 +91,39 @@ export class PatientCreateComponent {
     }
 
     save() {
+
         if (this.form.invalid) return;
 
         this.isSaving = true;
 
-        this.patientsService.create(this.form.value)
+        const data = {
+            ...this.form.value,
+            birthDate: this.formatDate(this.form.value.birthDate)
+        };
+
+        this.patientsService.create(data)
             .subscribe({
                 next: () => {
                     this.router.navigate(['/patients']);
                 },
-                error: () => {
+                error: (err) => {
+                    console.error(err);
                     this.isSaving = false;
                 }
-
-
             });
+    }
+
+    formatDate(date: any) {
+
+        if (!date) return null;
+
+        const d = new Date(date);
+
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+
+        return `${yyyy}-${mm}-${dd}`;
     }
 
     getAge(): number | null {
