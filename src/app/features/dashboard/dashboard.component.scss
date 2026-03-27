@@ -564,13 +564,9 @@
 }
 
 .main-grid {
-
     display: grid;
-
-    grid-template-columns: 1.3fr 1fr;
-
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     gap: 40px;
-
 }
 
 @media (max-width: 1024px) {
@@ -631,6 +627,11 @@
 
 }
 
+.agenda-section,
+.modules-section {
+    min-width: 0;
+}
+
 .timeline {
     background: transparent;
     padding: 0;
@@ -645,7 +646,10 @@
     overflow-y: auto;
     flex: 1;
     padding-right: 8px;
+    overflow-x: hidden;
 }
+
+
 
 .timeline-item {
     display: grid;
@@ -655,6 +659,7 @@
     grid-template-columns: 70px 20px 1fr;
     padding: 14px 0;
     margin-bottom: 18px;
+    min-width: 0;
     align-items: start;
     border-bottom: 1px solid #F1F5F9;
 }
@@ -704,6 +709,10 @@
 
     padding: 16px 18px;
 
+    min-width: 0;
+
+    width: 100%;
+
     border-radius: 14px;
 
     border: 1px solid #eef2f7;
@@ -743,6 +752,8 @@
     gap: 8px;
 
     opacity: 0;
+
+    flex-wrap: wrap;
 
     transition: 0.25s;
 
@@ -1933,4 +1944,34 @@ mat-card:hover {
 
     }
 
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.agenda-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+* {
+    min-width: 0;
 }
