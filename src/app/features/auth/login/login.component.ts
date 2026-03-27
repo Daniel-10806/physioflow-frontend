@@ -47,7 +47,7 @@ export class LoginComponent {
     failedAttempts = 0;
     isBlocked = false;
     blockTimeRemaining = 0;
-
+    message = '';
 
     constructor(
         private fb: FormBuilder,
@@ -73,7 +73,14 @@ export class LoginComponent {
         if (this.isBlocked) return;
 
         this.loading = true;
-        this.cdr.markForCheck();
+        this.message = '';
+
+        setTimeout(() => {
+            if (this.loading) {
+                this.message = 'Estamos iniciando el servidor...';
+                this.cdr.markForCheck();
+            }
+        }, 2500);
 
         this.authService.login(this.form.value as any)
             .pipe(
@@ -87,7 +94,18 @@ export class LoginComponent {
                     this.failedAttempts = 0;
                     this.router.navigate(['/dashboard']);
                 },
-                error: () => {
+                error: (err) => {
+
+                    if (err.status === 0 || err.status >= 500) {
+
+                        this.snackBar.open(
+                            'Servidor iniciando... intenta nuevamente en unos segundos',
+                            'OK',
+                            { duration: 4000 }
+                        );
+
+                        return;
+                    }
 
                     this.failedAttempts++;
 
@@ -96,7 +114,7 @@ export class LoginComponent {
                     }
 
                     this.snackBar.open(
-                        'Credenciales incorrectas. Verifique sus datos.',
+                        'Credenciales incorrectas',
                         'Cerrar',
                         { duration: 4000 }
                     );
