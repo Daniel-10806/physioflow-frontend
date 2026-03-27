@@ -649,7 +649,6 @@
     gap: 18px;
     position: relative;
     padding-bottom: 22px;
-    grid-template-columns: 45px 10px 1fr;
     padding: 14px 0;
     margin-bottom: 18px;
     min-width: 0;
@@ -979,20 +978,35 @@
 
     .timeline-item {
 
-        grid-template-columns: 55px 10px 1fr;
-
+        grid-template-columns: 30px 6px 1fr;
+        gap: 8px;
+        font-size: 12px;
     }
 
-    .timeline-time {
-
-        font-size: 12px;
-
+    .timeline {
+        padding-left: 0 !important;
     }
 
     .timeline-card {
 
         padding: 14px;
+        margin-left: -14px;
 
+    }
+
+    .timeline-line {
+        width: 2px;
+    }
+
+    .timeline-line::after {
+        left: -5px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-time {
+        font-size: 11px;
+        width: 30px;
     }
 
 }
