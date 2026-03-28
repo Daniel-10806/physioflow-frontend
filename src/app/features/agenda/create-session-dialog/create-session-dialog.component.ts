@@ -188,8 +188,14 @@ export class CreateSessionDialogComponent implements OnInit {
             return;
         }
 
+        const patient = this.patients.find(
+            p => p.id === this.form.getRawValue().patientId
+        );
+
         const payload = {
             patientId: this.form.getRawValue().patientId,
+            patientName: patient?.fullName,
+            patientEmail: patient?.email,
             sessionDate: this.form.value.sessionDate,
             sessionTime: time,
             durationMinutes: duration,
