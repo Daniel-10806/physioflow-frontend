@@ -25,11 +25,15 @@ export class WeeklyCalendarComponent implements OnInit, OnChanges {
 
         const target = event.target as HTMLElement;
 
-        if (target.closest('.menu-btn')) return;
-        if (target.closest('.menu-dropdown')) return;
+        const clickedInsideMenu =
+            target.closest('.menu-btn') ||
+            target.closest('.menu-dropdown');
+
+        if (clickedInsideMenu) return;
 
         this.sessions.forEach(s => s.showMenu = false);
 
+        this.cd.detectChanges();
     }
 
     editSession(session: any) {
@@ -242,28 +246,24 @@ export class WeeklyCalendarComponent implements OnInit, OnChanges {
             if (s !== session) s.showMenu = false;
         });
 
-        const btn = event.target as HTMLElement;
+        const btn = event.currentTarget as HTMLElement; // 🔥 cambio aquí
 
         const rect = btn.getBoundingClientRect();
 
         const spaceRight = window.innerWidth - rect.right;
         const spaceLeft = rect.left;
 
-        // ancho aprox del menú
         const menuWidth = 160;
 
-        if (spaceRight < menuWidth && spaceLeft > menuWidth) {
-
-            session.menuDirection = 'left';
-
-        } else {
-
-            session.menuDirection = 'right';
-
-        }
+        session.menuDirection =
+            (spaceRight < menuWidth && spaceLeft > menuWidth)
+                ? 'left'
+                : 'right';
 
         session.showMenu = !session.showMenu;
+        this.sessions = [...this.sessions];
 
+        this.cd.detectChanges();
     }
 
     isPastHour(day: Date, hour: string): boolean {

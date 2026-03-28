@@ -79,7 +79,8 @@ export class AgendaComponent implements OnInit {
 
                     isPaid: s.status === 'PAID' || s.status === 'COMPLETED',
 
-                    status: s.status
+                    status: s.status,
+                    showMenu: false
 
                 }));
 
