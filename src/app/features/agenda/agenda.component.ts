@@ -77,7 +77,7 @@ export class AgendaComponent implements OnInit {
 
                     area: s.area || s.department || '',
 
-                    isPaid: !!(s.paid || s.isPaid),
+                    isPaid: s.status === 'PAID' || s.status === 'COMPLETED',
 
                     status: s.status
 

@@ -36,7 +36,7 @@
 
                     <div class="session-card" [ngClass]="[
         session.type?.toLowerCase(),
-        session.isPaid ? 'paid' : '',
+       session.status === 'PAID' ? 'paid' : '',
         session.status?.toLowerCase()
      ]" (click)="$event.stopPropagation()">
 
@@ -64,7 +64,7 @@
 
                                 <div class="badges">
 
-                                    <span *ngIf="session.isPaid" class="paid-badge">
+                                    <span *ngIf="session.status === 'PAID'" class="paid-badge">
                                         ✔ PAGADO
                                     </span>
 
@@ -72,8 +72,7 @@
                                         ✔ COMPLETADA
                                     </span>
 
-                                    <span *ngIf="!session.isPaid && session.status !== 'COMPLETED'"
-                                        class="scheduled-badge">
+                                    <span *ngIf="session.status === 'SCHEDULED'" class="scheduled-badge">
                                         ● PROGRAMADA
                                     </span>
 
@@ -90,28 +89,28 @@
 
                                 <div class="menu-dropdown" [ngClass]="session.menuDirection" *ngIf="session.showMenu">
 
-                                    <div class="menu-item" *ngIf="!session.isPaid && session.status !== 'COMPLETED'"
+                                    <div class="menu-item" *ngIf="session.status === 'SCHEDULED'"
                                         (click)="editSession(session);$event.stopPropagation()">
 
                                         ✏ EDITAR
 
                                     </div>
 
-                                    <div class="menu-item" *ngIf="!session.isPaid"
+                                    <div class="menu-item" *ngIf="session.status === 'SCHEDULED'"
                                         (click)="paySession(session);$event.stopPropagation()">
 
                                         💳 PAGAR
 
                                     </div>
 
-                                    <div class="menu-item" *ngIf="session.isPaid && session.status !== 'COMPLETED'"
+                                    <div class="menu-item" *ngIf="session.status === 'PAID'"
                                         (click)="completeSession(session);$event.stopPropagation()">
 
                                         🩺 REGISTRAR
 
                                     </div>
 
-                                    <div class="menu-item delete" *ngIf="!session.isPaid"
+                                    <div class="menu-item delete" *ngIf="session.status === 'SCHEDULED'"
                                         (click)="deleteSession(session);$event.stopPropagation()">
 
                                         🗑 ELIMINAR
