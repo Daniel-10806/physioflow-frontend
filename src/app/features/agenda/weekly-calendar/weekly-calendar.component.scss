@@ -229,20 +229,6 @@
 
 }
 
-.session-menu {
-
-    position: relative;
-
-    width: 18px;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    overflow: visible;
-
-}
-
 .menu-btn {
 
     border: none;
@@ -1097,7 +1083,7 @@
 
     display: grid;
 
-    grid-template-columns: 26px 1fr 18px;
+    grid-template-columns: 26px 1fr;
 
     gap: 4px;
 
@@ -1280,4 +1266,22 @@
 
     }
 
+}
+
+.session-card {
+    position: relative;
+}
+
+.session-menu {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 10;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 22px;
+    right: 0;
+    width: 160px;
 }
